@@ -10,4 +10,8 @@ namespace MvcGroup8.Data
         {
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
