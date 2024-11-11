@@ -35,20 +35,6 @@
       <FileName>Supplier.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LibraryGroup8.InventoryHistory">
-    <Position X="6.5" Y="11" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAGAAQAAAAAAAIAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>InventoryHistory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LibraryGroup8.SaleDetail">
-    <Position X="10.25" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>MAACAIAAAAAAAAAAAAAAAAAAAAAAAAAAACAAgAAAEAA=</HashCode>
-      <FileName>SaleDetail.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="LibraryGroup8.RestockOrder">
     <Position X="2.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
@@ -68,6 +54,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>AppUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryGroup8.InventoryHistory">
+    <Position X="6.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAGAAQAAAAAAAIAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>InventoryHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryGroup8.SaleDetail">
+    <Position X="10.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAACAIAAAAAAAAAAAAAAAAAAAAAAAAAAACAAgAAAEAA=</HashCode>
+      <FileName>SaleDetail.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
