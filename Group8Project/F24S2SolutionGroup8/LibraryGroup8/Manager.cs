@@ -1,12 +1,16 @@
-﻿using System;
+﻿using LibraryGroup8;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryGroup8
 {
-    internal class Manager
+    public class Manager : AppUser
     {
+        public Manager(string FirstName, string LastName, string Email, string Password) 
+            : base (FirstName, LastName, Email, Password)
+        { 
+        }
     }
 }
