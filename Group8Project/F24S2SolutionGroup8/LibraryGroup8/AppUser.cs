@@ -22,7 +22,10 @@ namespace LibraryGroup8
             this.LastName = LastName;
             this.Email = email;
             this.Id = Email;
+            this.Id = UserName;
 
+            //Method password
+            //Hashing (password) v Encrypting: Forgot password: Retrieve hashed 
             PasswordHasher<AppUser> passwordHasher = new PasswordHasher<AppUser>();
             this.PasswordHash = passwordHasher.HashPassword(this, Password);
         }
