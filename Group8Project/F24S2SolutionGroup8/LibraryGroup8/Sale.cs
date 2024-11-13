@@ -1,4 +1,4 @@
-﻿using DiscussionLibraryGroup8;
+﻿using LibraryGroup8;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,7 @@ namespace LibraryGroup8
         public int StaffID { get; set; }
         public Staff Staff { get; set; }
         public ICollection<SaleDetail> SaleDetails { get; set; } = new List<SaleDetail>();
+        
         public Sale() { }
         public Sale(DateTime saleDate, int staffID)
         {

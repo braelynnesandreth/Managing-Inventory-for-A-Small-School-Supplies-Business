@@ -1,4 +1,4 @@
-﻿using DiscussionLibraryGroup8;
+﻿using LibraryGroup8;
 using System;
 using System.Collections.Generic;
 using System.Linq;

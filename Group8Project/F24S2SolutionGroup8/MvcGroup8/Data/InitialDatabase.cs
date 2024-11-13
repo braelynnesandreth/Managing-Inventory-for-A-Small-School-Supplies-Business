@@ -1,12 +1,4 @@
-﻿using DiscussionLibraryGroup8;
-using LibraryGroup8;
-using Microsoft.AspNetCore.Identity;
-
-
-
-using DiscussionLibraryGroup8;
-using LibraryGroup8;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace MvcGroup8.Data
 {
@@ -41,7 +33,7 @@ namespace MvcGroup8.Data
             // Insert initial users if they don't exist
             if (!database.Users.Any())
             {
-                CreateUserAndAssignRole(userManager, adminRole, new AppUser("Samantha", "Olivio", "samanthaolivio@gmail.com", "SecurePassword123!"));
+                CreateUserAndAssignRole(userManager, adminRole, new AppUser.AppUser("Samantha", "Olivio", "samanthaolivio@gmail.com", "SecurePassword123!"));
                 CreateUserAndAssignRole(userManager, smallBusinessOwnerRole, new SmallBusinessOwner("Brooke", "Mesinere", "brookemesinere@gmail.com", "SecurePassword123!"));
                 CreateUserAndAssignRole(userManager, managerRole, new Manager("Jordan", "Whitaker", "jordanwhitaker@gmail.com", "SecurePassword123!"));
                 CreateUserAndAssignRole(userManager, staffRole, new Staff("Marcus", "Santiago", "marcussantiago@gmail.com", "SecurePassword123!"));
