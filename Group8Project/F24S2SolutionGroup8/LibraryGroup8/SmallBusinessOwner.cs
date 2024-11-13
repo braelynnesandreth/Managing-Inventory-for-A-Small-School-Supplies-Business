@@ -1,5 +1,4 @@
-﻿using LibraryGroup8;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,13 @@ using System.Text;
 namespace LibraryGroup8
 {
     public class SmallBusinessOwner : AppUser
+
     {
-        public SmallBusinessOwner(string FirstName, string LastName, string Email, string Password)
-            : base(FirstName, LastName, Email, Password)
-        {
+        public Manager Manager {  get; set; }
+        public SmallBusinessOwner(string firstame, string lastname, string email, string password)
+            : base(firstame, lastname, email, password)
+            { 
+           
         }
     }
 }
