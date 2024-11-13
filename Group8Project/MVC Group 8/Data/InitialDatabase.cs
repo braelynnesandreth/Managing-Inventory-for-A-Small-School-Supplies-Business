@@ -47,29 +47,29 @@ namespace MVC_Group_8.Data
             {
 
                 // Create Small Business Owners
-                SmallBusinessOwner smallBusinessOwner = new SmallBusinessOwner("Brooke", "Mesinere", "brookemesinere@gmail.com", "Rainforest45");
+                SmallBusinessOwner smallBusinessOwner = new SmallBusinessOwner("Brooke", "Mesinere", "brookemesinere@example.com", "Rainforest45");
                 smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner).Wait();
                 smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
 
-                smallBusinessOwner = new SmallBusinessOwner("Jordan", "Whitaker", "jordanwhitaker@gmail.com", "Rainbows34");
+                smallBusinessOwner = new SmallBusinessOwner("Jordan", "Whitaker", "jordanwhitaker@example.com", "Rainbows34");
                 smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner).Wait();
                 smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
 
                 // Create Managers
-                Manager manager = new Manager("Marcus", "Santiago", "marcussantiago@gmail.com", "Dolphins123");
+                Manager manager = new Manager("Marcus", "Santiago", "marcussantiago@example.com", "Dolphins123");
                 userManager.CreateAsync(manager).Wait();
                 userManager.AddToRoleAsync(manager, managerRole).Wait();
 
-                manager = new Manager("Sophie", "Henson", "sophiehenson@gmail.com", "StarryNight5");
+                manager = new Manager("Sophie", "Henson", "sophiehenson@example.com", "StarryNight5");
                 userManager.CreateAsync(manager).Wait();
                 userManager.AddToRoleAsync(manager, managerRole).Wait();
 
                 // Create Staff Members
-                Staff staff = new Staff("Liam", "Chen", "liamchen@gmail.com", "Football123");
+                Staff staff = new Staff("Liam", "Chen", "liamchen@example.com", "Football123");
                 userManager.CreateAsync(staff).Wait();
                 userManager.AddToRoleAsync(staff, staffRole).Wait();
 
-                staff = new Staff("Emma", "Caldwell", "emmacaldwell@gmail.com", "Butterflies45");
+                staff = new Staff("Emma", "Caldwell", "emmacaldwell@example.com", "Butterflies45");
                 userManager.CreateAsync(staff).Wait();
                 userManager.AddToRoleAsync(staff, staffRole).Wait();
 
