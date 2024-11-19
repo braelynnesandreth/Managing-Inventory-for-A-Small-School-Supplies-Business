@@ -212,6 +212,27 @@ namespace MVC_Group_8.Data
 
                 database.SaveChanges();
             }
+
+
+            if (!database.InventoryHistory.Any())
+            {
+                InventoryHistory inventoryHistory1 = new InventoryHistory { InventoryHistoryId = 1, Date = 1, QuantityChange = 10, Reason = "Found a better price" };
+                database.InventoryHistory.Add(inventoryHistory1);
+
+                InventoryHistory inventoryHistory2 = new InventoryHistory { InventoryHistoryId = 2, Date = 1, QuantityChange = 20, Reason = "Do not need it anympore" };
+                database.InventoryHistory.Add(inventoryHistory2);
+
+                InventoryHistory inventoryHistory3 = new InventoryHistory { InventoryHistoryId = 3, Date = 1, QuantityChange = 30, Reason = "Product broke in the delivery process" };
+                database.InventoryHistory.Add(inventoryHistory3);
+
+                InventoryHistory inventoryHistory4 = new InventoryHistory { InventoryHistoryId = 4, Date = 1, QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
+                database.InventoryHistory.Add(inventoryHistory4);
+
+                InventoryHistory inventoryHistory5 = new InventoryHistory { InventoryHistoryId = 5, Date = 1, QuantityChange = 50, Reason = "The size did not fix, too small" };
+                database.InventoryHistory.Add(inventoryHistory5);
+
+                database.SaveChanges();
+            }
         }
     }
 }
