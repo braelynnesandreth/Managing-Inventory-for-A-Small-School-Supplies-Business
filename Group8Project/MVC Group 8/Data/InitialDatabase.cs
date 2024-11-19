@@ -216,20 +216,41 @@ namespace MVC_Group_8.Data
 
             if (!database.InventoryHistory.Any())
             {
-                InventoryHistory inventoryHistory1 = new InventoryHistory { InventoryHistoryId = 1, Date = 1, QuantityChange = 10, Reason = "Found a better price" };
+                InventoryHistory inventoryHistory1 = new InventoryHistory { InventoryHistoryId = 1, Date = new DateTime(20204,1, 1), QuantityChange = 10, Reason = "Found a better price" };
                 database.InventoryHistory.Add(inventoryHistory1);
 
-                InventoryHistory inventoryHistory2 = new InventoryHistory { InventoryHistoryId = 2, Date = 1, QuantityChange = 20, Reason = "Do not need it anympore" };
+                InventoryHistory inventoryHistory2 = new InventoryHistory { InventoryHistoryId = 2, Date = new DateTime(2024,4, 1), QuantityChange = 20, Reason = "Do not need it anympore" };
                 database.InventoryHistory.Add(inventoryHistory2);
 
-                InventoryHistory inventoryHistory3 = new InventoryHistory { InventoryHistoryId = 3, Date = 1, QuantityChange = 30, Reason = "Product broke in the delivery process" };
+                InventoryHistory inventoryHistory3 = new InventoryHistory { InventoryHistoryId = 3, Date = new DateTime(2024,5,1), QuantityChange = 30, Reason = "Product broke in the delivery process" };
                 database.InventoryHistory.Add(inventoryHistory3);
 
-                InventoryHistory inventoryHistory4 = new InventoryHistory { InventoryHistoryId = 4, Date = 1, QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
+                InventoryHistory inventoryHistory4 = new InventoryHistory { InventoryHistoryId = 4, Date = new DateTime(2023,6,1), QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
                 database.InventoryHistory.Add(inventoryHistory4);
 
-                InventoryHistory inventoryHistory5 = new InventoryHistory { InventoryHistoryId = 5, Date = 1, QuantityChange = 50, Reason = "The size did not fix, too small" };
+                InventoryHistory inventoryHistory5 = new InventoryHistory { InventoryHistoryId = 5, Date = new DateTime(2022,4, 1), QuantityChange = 50, Reason = "The size did not fix, too small" };
                 database.InventoryHistory.Add(inventoryHistory5);
+
+                database.SaveChanges();
+            }
+
+
+            if (!database.RestockOrder.Any())
+            {
+                RestockOrder restockOrder1 = new RestockOrder { Supplier = "Target", Date = new DateTime(2024,6,5), Product = "Shirt", Status = "In transit" };
+                database.RestockOrder.Add(restockOrder1);
+
+                RestockOrder restockOrder2 = new RestockOrder { Supplier = "Walmart", Date = new DateTime(2024,4,7), Product = "Candle", Status = "Delivered" };
+                database.RestockOrder.Add(restockOrder2);
+
+                RestockOrder restockOrder3 = new RestockOrder { Supplier = "Amazon", Date = new DateTime(2023,12,16), Product = "Water Bottle", Status = "Ordered" };
+                database.RestockOrder.Add(restockOrder3);
+
+                RestockOrder restockOrder4 = new RestockOrder { Supplier = "Amazon", Date = new DateTime(2024,5,17), Product = "Shirt", Status = "in transit" };
+                database.RestockOrder.Add(restockOrder4);
+
+                RestockOrder restockOrder5 = new RestockOrder { Supplier = "Target", Date = new DateTime(2024, 7, 8), Product = "Shoes", Status = "Delivered" };
+                database.RestockOrder.Add(restockOrder5);
 
                 database.SaveChanges();
             }

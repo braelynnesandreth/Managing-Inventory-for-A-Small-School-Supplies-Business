@@ -15,6 +15,8 @@ namespace LibraryGroup8
         public int QuantityChange { get; set; }
         public string Reason { get; set; }
 
+        public Product Product { get; set; }
+
         public InventoryHistory() { }
         public InventoryHistory(int inventoryHistoryId, DateTime date, int QuantityChange, string Reason)
         {

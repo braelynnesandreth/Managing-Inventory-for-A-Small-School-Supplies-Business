@@ -20,10 +20,10 @@ namespace LibraryGroup8
         public RestockOrder() 
         { 
         }
-        public RestockOrder(Supplier supplier, Product product, DateTime Date, string Status)
+        public RestockOrder(string supplier, string product, DateTime Date, string Status)
         {
-            Supplier = supplier;
-            Product = product;
+            this.Supplier = Supplier;
+            this.Product = Product;
             this.Date = Date;
             this.Status = Status;
         }

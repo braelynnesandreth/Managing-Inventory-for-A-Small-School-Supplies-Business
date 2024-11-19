@@ -27,6 +27,7 @@ namespace LibraryGroup8
         {
             SaleDetail = new List<SaleDetail>();
             RestockOrder = new List<RestockOrder>();
+            
         }
         
         public Product(int productId, string name, string description, int currentStock, int reorderPoint, int maxStock)
