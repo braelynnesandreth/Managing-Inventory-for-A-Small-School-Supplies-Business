@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LibraryGroup8
 {
@@ -13,21 +15,23 @@ namespace LibraryGroup8
 
         public string ContactInfo { get; set; }
 
-        public ICollection<Product> Product {  get; set; }
-        public ICollection<RestockOrder> RestockOrder { get; set; }
-        public Supplier() 
+        public Product Product {  get; set; }
+        public List<RestockOrder> RestocksTheOrder { get; set; }
+
+        [NotMapped]
+        public List<Product> Products { get; set; } 
+        = new List<Product>();
+
+        public Supplier ()
         {
-            Product = new List<Product>();
-            RestockOrder = new List<RestockOrder>();
+            RestocksTheOrder = new List<RestockOrder> ();
         }
 
-        public Supplier (int supplierId, string name, string contactInfo)
+        public Supplier (Product product, string name, string contactInfo)
         {
-            SupplierId = supplierId;
+            Product = product;
             Name = name;
             ContactInfo = contactInfo;
-            Product = new List<Product>();
-            RestockOrder = new List<RestockOrder>();
         }
     }
 }
