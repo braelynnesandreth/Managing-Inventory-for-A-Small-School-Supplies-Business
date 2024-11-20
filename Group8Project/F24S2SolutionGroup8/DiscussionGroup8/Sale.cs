@@ -16,6 +16,12 @@ namespace LibraryGroup8
         public Staff Staff { get; set; }
 
         public ICollection<SaleDetail> SaleDetails { get; set; }
+
+        public decimal calculateTotal()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Sale() 
         { 
             SaleDetails = new List<SaleDetail>();

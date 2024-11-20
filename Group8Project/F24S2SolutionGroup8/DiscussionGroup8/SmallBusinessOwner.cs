@@ -11,8 +11,8 @@ namespace LibraryGroup8
         public string ManagerId { get; set; }
         public Manager Manager { get; set; }
 
-        public void ApproveRestock(RestockOrder order) { }
-        public void ViewSalesInsights(List<Sale> sales) { }
+        public bool ApproveRestock(RestockOrder order) { }
+        public Sale ViewSalesInsights(List<Sale> sales) { }
 
     }
 }

@@ -11,7 +11,7 @@ namespace LibraryGroup8
         public ICollection<Sale> Sales { get; set; }  
         public Manager Manager { get; set; }
 
-        public Sale processSale()
+        public bool processSale()
         {
             throw new System.NotImplementedException();
         }

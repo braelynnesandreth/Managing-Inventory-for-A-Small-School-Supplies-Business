@@ -16,7 +16,11 @@ namespace LibraryGroup8
         
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
-        
+
+        public decimal calculateSubtotal()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public SaleDetail() { }
 

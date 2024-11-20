@@ -23,7 +23,15 @@ namespace LibraryGroup8
         public ICollection<SaleDetail> SaleDetail { get; set; }
         public ICollection<RestockOrder> RestockOrder {get; set;}
 
-       
+        public void Updatestock()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Checklowstock()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public Product() 
         {

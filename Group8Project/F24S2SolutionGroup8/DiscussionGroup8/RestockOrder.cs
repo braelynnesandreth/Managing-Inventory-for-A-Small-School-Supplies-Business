@@ -16,7 +16,16 @@ namespace LibraryGroup8
         public Product Product { get; set; }
         public DateTime Date { get; set; }
         public string Status { get; set; }
-       
+
+        public void approve()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void cancel()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public RestockOrder() { }
         public RestockOrder(Product product)

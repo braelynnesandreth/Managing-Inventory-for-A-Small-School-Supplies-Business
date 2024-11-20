@@ -19,7 +19,7 @@ namespace LibraryGroup8
         {
             StaffMembers = new List<Staff>();
         }
-        public InventoryHistory ReviewInventoryHistory() => throw new System.NotImplementedException();
-        public RestockOrder AnalyzeRestockingTrends() => throw new System.NotImplementedException();
+        public RestockOrder ReviewInventoryHistory() => throw new System.NotImplementedException();
+        public RestockingTrend AnalyzeRestockingTrends() => throw new System.NotImplementedException();
     }
 }
