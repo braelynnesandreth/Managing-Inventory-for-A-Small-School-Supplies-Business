@@ -22,4 +22,8 @@ namespace LibraryGroup8
         public RestockOrder ReviewInventoryHistory() => throw new System.NotImplementedException();
         public RestockingTrend AnalyzeRestockingTrends() => throw new System.NotImplementedException();
     }
+
+    public class RestockingTrend
+    {
+    }
 }
