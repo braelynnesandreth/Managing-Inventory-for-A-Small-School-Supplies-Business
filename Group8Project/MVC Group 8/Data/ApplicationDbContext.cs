@@ -25,10 +25,7 @@ namespace MVC_Group_8.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+       
 
         internal void SaveChanges()
         {
