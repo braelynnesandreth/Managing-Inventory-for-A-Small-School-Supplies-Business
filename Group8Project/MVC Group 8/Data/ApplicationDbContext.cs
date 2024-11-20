@@ -21,16 +21,10 @@ namespace MVC_Group_8.Data
         public DbSet<RestockOrder> RestockOrder { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+             : base(options)
         {
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
         }
     }
 }
-
 
 

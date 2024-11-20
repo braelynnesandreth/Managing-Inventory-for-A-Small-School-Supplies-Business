@@ -7,9 +7,19 @@ namespace LibraryGroup8
 {
     public class Staff : AppUser
     {
-        public int ManagerId { get; set; }  
+        public string ManagerId { get; set; }  
         public ICollection<Sale> Sales { get; set; }  
-        public Manager Manager { get; set; }  
+        public Manager Manager { get; set; }
+
+        public Sale processSale()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public InventoryHistory updateInventory()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public Staff()
         {
@@ -19,12 +29,14 @@ namespace LibraryGroup8
         public Staff(string firstname, string lastname, string email, string password, int managerId)
             : base(firstname, lastname, email, password)
         {
-            ManagerId = managerId;  
+            ManagerId = ManagerId;
             Sales = new List<Sale>();  
         }
 
-        public Staff(string firstname, string lastname, string email, string password) : base(firstname, lastname, email, password)
+        public Staff(string firstname, string lastname, string email, string password) :
+            base(firstname, lastname, email, password)
         {
+            Sales = new List<Sale>();
         }
     }
 }
