@@ -129,28 +129,30 @@ namespace MVC_Group_8.Data
                 database.SaveChanges();
             }
 
-           
+
             if (!database.Supplier.Any())
             {
-                Supplier supplier = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com" };
-                database.Supplier.Add(supplier);
+                
+                Product product1 = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
+                database.Product.Add(product1);
+                database.SaveChanges();  
 
-                supplier = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com" };
-                database.Supplier.Add(supplier);
+                Supplier supplier1 = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com", Product = product1 };
+                database.Supplier.Add(supplier1);
 
-                supplier = new Supplier { Name = "Global Suppliers", ContactInfo = "info@globalsuppliers.com" };
-                database.Supplier.Add(supplier);
+                Product product2 = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
+                database.Product.Add(product2);
+                database.SaveChanges();  
 
-                supplier = new Supplier { Name = "Best Products", ContactInfo = "support@bestproducts.com" };
-                database.Supplier.Add(supplier);
+                Supplier supplier2 = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com", Product = product2 };
+                database.Supplier.Add(supplier2);
 
-                supplier = new Supplier { Name = "Top Gear Suppliers", ContactInfo = "service@topgear.com" };
-                database.Supplier.Add(supplier);
+               
 
                 database.SaveChanges();
             }
 
-            
+
             if (!database.Product.Any())
             {
                 Product product1 = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };

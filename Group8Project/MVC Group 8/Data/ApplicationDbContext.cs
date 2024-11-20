@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace MVC_Group_8.Data
 {
     public class ApplicationDbContext : IdentityDbContext
@@ -19,6 +18,7 @@ namespace MVC_Group_8.Data
         public DbSet<InventoryHistory> InventoryHistory { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
         public DbSet<RestockOrder> RestockOrder { get; set; }
+        public object Roles { get; internal set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -28,6 +28,11 @@ namespace MVC_Group_8.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+        }
+
+        internal void SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }
