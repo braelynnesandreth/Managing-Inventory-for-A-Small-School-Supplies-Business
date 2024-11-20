@@ -17,22 +17,25 @@ namespace LibraryGroup8
 
         public Product Product {  get; set; }
 
+        
         public List<RestockOrder> RestocksTheOrder { get; set; }
 
-        [NotMapped]
-        public List<Product> Products { get; set; } 
-        = new List<Product>();
 
-        public Supplier ()
+
+
+        public Supplier()
         {
-            RestocksTheOrder = new List<RestockOrder> ();
+            RestocksTheOrder = new List<RestockOrder>();
+           
         }
 
-        public Supplier (Product product, string name, string contactInfo)
+        public Supplier(string name, string contactInfo)
         {
-            Product = product;
+            Product = Product;
             Name = name;
             ContactInfo = contactInfo;
+            RestocksTheOrder = new List<RestockOrder>();
+            
         }
     }
 }

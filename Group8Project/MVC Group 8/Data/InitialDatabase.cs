@@ -1,6 +1,7 @@
 ﻿using LibraryGroup8;
 using Microsoft.AspNetCore.Identity;
-using static System.Formats.Asn1.AsnWriter;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace MVC_Group_8.Data
 {
@@ -85,10 +86,7 @@ namespace MVC_Group_8.Data
                  new AppUser { Firstname = "Isabella", Lastname = "Lewis", Email = "isabellalewis@example.com", UserName = "isabellalewis@example.com", PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "Password5") }
                 };
 
-                // Assigning managers and staff members to a small business owner
-                var managerForSmallBusinessOwner = database.Manager.FirstOrDefault(m => m.UserName == "Marcus");
-                smallBusinessOwner.Manager = managerForSmallBusinessOwner;
-                smallBusinessOwnerUserManager.UpdateAsync(smallBusinessOwner).Wait();
+
 
                 foreach (var appUser in appUsers)
                 {
@@ -143,22 +141,22 @@ namespace MVC_Group_8.Data
 
             if (!database.Supplier.Any())
             {
-                
+
                 Product product1 = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
                 database.Product.Add(product1);
-                database.SaveChanges();  
+                database.SaveChanges();
 
                 Supplier supplier1 = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com", Product = product1 };
                 database.Supplier.Add(supplier1);
 
                 Product product2 = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
                 database.Product.Add(product2);
-                database.SaveChanges();  
+                database.SaveChanges();
 
                 Supplier supplier2 = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com", Product = product2 };
                 database.Supplier.Add(supplier2);
 
-               
+
 
                 database.SaveChanges();
             }
@@ -184,7 +182,7 @@ namespace MVC_Group_8.Data
                 database.SaveChanges();
             }
 
-            
+
             if (!database.Sale.Any())
             {
                 Sale sale1 = new Sale { SaleDate = DateTime.Now, SaleTime = TimeSpan.FromHours(9), StaffId = 1 };
@@ -205,7 +203,7 @@ namespace MVC_Group_8.Data
                 database.SaveChanges();
             }
 
-            
+
             if (!database.SaleDetail.Any())
             {
                 SaleDetail saleDetail1 = new SaleDetail { SaleId = 1, ProductId = 1, Quantity = 10, UnitPrice = 1.50m };
@@ -229,120 +227,90 @@ namespace MVC_Group_8.Data
 
             if (!database.InventoryHistory.Any())
             {
-                InventoryHistory inventoryHistory1 = new InventoryHistory { InventoryHistoryId = 1, Date = new DateTime(20204,1, 1), QuantityChange = 10, Reason = "Found a better price" };
+                InventoryHistory inventoryHistory1 = new InventoryHistory { InventoryHistoryId = 1, Date = new DateTime(20204, 1, 1), QuantityChange = 10, Reason = "Found a better price" };
                 database.InventoryHistory.Add(inventoryHistory1);
 
-                InventoryHistory inventoryHistory2 = new InventoryHistory { InventoryHistoryId = 2, Date = new DateTime(2024,4, 1), QuantityChange = 20, Reason = "Do not need it anympore" };
+                InventoryHistory inventoryHistory2 = new InventoryHistory { InventoryHistoryId = 2, Date = new DateTime(2024, 4, 1), QuantityChange = 20, Reason = "Do not need it anympore" };
                 database.InventoryHistory.Add(inventoryHistory2);
 
-                InventoryHistory inventoryHistory3 = new InventoryHistory { InventoryHistoryId = 3, Date = new DateTime(2024,5,1), QuantityChange = 30, Reason = "Product broke in the delivery process" };
+                InventoryHistory inventoryHistory3 = new InventoryHistory { InventoryHistoryId = 3, Date = new DateTime(2024, 5, 1), QuantityChange = 30, Reason = "Product broke in the delivery process" };
                 database.InventoryHistory.Add(inventoryHistory3);
 
-                InventoryHistory inventoryHistory4 = new InventoryHistory { InventoryHistoryId = 4, Date = new DateTime(2023,6,1), QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
+                InventoryHistory inventoryHistory4 = new InventoryHistory { InventoryHistoryId = 4, Date = new DateTime(2023, 6, 1), QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
                 database.InventoryHistory.Add(inventoryHistory4);
 
-                InventoryHistory inventoryHistory5 = new InventoryHistory { InventoryHistoryId = 5, Date = new DateTime(2022,4, 1), QuantityChange = 50, Reason = "The size did not fix, too small" };
+                InventoryHistory inventoryHistory5 = new InventoryHistory { InventoryHistoryId = 5, Date = new DateTime(2022, 4, 1), QuantityChange = 50, Reason = "The size did not fix, too small" };
                 database.InventoryHistory.Add(inventoryHistory5);
 
                 database.SaveChanges();
             }
 
-
             if (!database.RestockOrder.Any())
             {
                 List<Product> productList = new List<Product>();
 
-                Product product =
-                    database.Product
-                    .Where(p => p.Name == "Pencil")
-                    .First();
+                // Add products to the product list
+                Product product = database.Product.Where(p => p.Name == "Pencil").First();
                 productList.Add(product);
 
-                product =
-                    database.Product
-                    .Where(p => p.Name == "Notebook")
-                    .First();
+                product = database.Product.Where(p => p.Name == "Notebook").First();
                 productList.Add(product);
 
-                product =
-                    database.Product
-                    .Where(p => p.Name == "Pen")
-                    .First();
+                product = database.Product.Where(p => p.Name == "Pen").First();
                 productList.Add(product);
 
-                product =
-                    database.Product
-                    .Where(p => p.Name == "Eraser")
-                    .First();
+                product = database.Product.Where(p => p.Name == "Eraser").First();
                 productList.Add(product);
 
-                product =
-                    database.Product
-                    .Where(p => p.Name == "Ruler")
-                    .First();
+                product = database.Product.Where(p => p.Name == "Ruler").First();
                 productList.Add(product);
 
                 List<Supplier> supplierList = new List<Supplier>();
 
-                Supplier supplier =
-                    database.Supplier
-                    .Where(su => su.Name == "ABC Supplies")
-                    .First();
+                // Add suppliers to the supplier list
+                Supplier supplier = database.Supplier.Where(su => su.Name == "ABC Supplies").First();
                 supplierList.Add(supplier);
 
-                supplier =
-                    database.Supplier
-                    .Where(su => su.Name == "XYZ Corp")
-                    .First();
+                supplier = database.Supplier.Where(su => su.Name == "XYZ Corp").First();
                 supplierList.Add(supplier);
 
-                supplier =
-                    database.Supplier
-                    .Where(su => su.Name == "Global Suppliers")
-                    .First();
+                supplier = database.Supplier.Where(su => su.Name == "Global Suppliers").First();
                 supplierList.Add(supplier);
 
-                supplier =
-                    database.Supplier
-                    .Where(su => su.Name == "Best Products")
-                    .First();
+                supplier = database.Supplier.Where(su => su.Name == "Best Products").First();
                 supplierList.Add(supplier);
 
-                supplier =
-                    database.Supplier
-                    .Where(su => su.Name == "Top Gear Suppliers")
-                    .First();
+                supplier = database.Supplier.Where(su => su.Name == "Top Gear Suppliers").First();
                 supplierList.Add(supplier);
 
                 DateTime date1 = new DateTime(2024, 6, 5);
 
-
-                //Tried to use productList[0], supplierList[0] etc. and got errors
-                RestockOrder restockOrder = new RestockOrder("Pencil", "ABC Supplies", date1, "In Transit");
+                // Now use the actual Product and Supplier objects from the lists
+                RestockOrder restockOrder = new RestockOrder(supplierList[0], productList[0], date1, "In Transit");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
                 DateTime date2 = new DateTime(2024, 4, 7);
-                
-                restockOrder = new RestockOrder("Notebook", "XYZ Corp", date2, "Delivered");
+
+                restockOrder = new RestockOrder(supplierList[1], productList[1], date2, "Delivered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
                 DateTime date3 = new DateTime(2024, 1, 2);
 
-                restockOrder = new RestockOrder("Pen", "Global Suppliers", date3, "Ordered");
+                restockOrder = new RestockOrder(supplierList[2], productList[2], date3, "Ordered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
                 DateTime date4 = new DateTime(2023, 2, 1);
 
-                restockOrder = new RestockOrder("Eraser", "Best Products", date4, "Delivered");
+                restockOrder = new RestockOrder(supplierList[3], productList[3], date4, "Delivered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
                 DateTime date5 = new DateTime(2022, 4, 9);
 
-                restockOrder = new RestockOrder("Ruler", "Top Gear Suppliers", date5, "Ordered");
+                restockOrder = new RestockOrder(supplierList[4], productList[4], date5, "Ordered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
             }

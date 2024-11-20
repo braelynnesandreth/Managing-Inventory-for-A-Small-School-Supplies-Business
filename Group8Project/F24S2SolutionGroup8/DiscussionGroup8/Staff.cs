@@ -7,7 +7,7 @@ namespace LibraryGroup8
 {
     public class Staff : AppUser
     {
-        public string ManagerId { get; set; }  
+        public int ManagerId { get; set; }  
         public ICollection<Sale> Sales { get; set; }  
         public Manager Manager { get; set; }
 

@@ -4,6 +4,7 @@ using MVC_Group_8.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Group_8.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241120060800_AddSaleDetail")]
+    partial class AddSaleDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,7 @@ namespace MVC_Group_8.Data.Migrations
                     b.HasIndex("ProductId")
                         .IsUnique();
 
-                    b.ToTable("InventoryHistory", (string)null);
+                    b.ToTable("InventoryHistory");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Product", b =>
@@ -84,7 +87,7 @@ namespace MVC_Group_8.Data.Migrations
                     b.HasIndex("SupplierId")
                         .IsUnique();
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("LibraryGroup8.RestockOrder", b =>
@@ -114,7 +117,7 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("RestockOrder", (string)null);
+                    b.ToTable("RestockOrder");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Sale", b =>
@@ -141,7 +144,7 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasIndex("StaffId1");
 
-                    b.ToTable("Sale", (string)null);
+                    b.ToTable("Sale");
                 });
 
             modelBuilder.Entity("LibraryGroup8.SaleDetail", b =>
@@ -170,7 +173,7 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasIndex("SaleId");
 
-                    b.ToTable("SaleDetail", (string)null);
+                    b.ToTable("SaleDetail");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Supplier", b =>
@@ -191,7 +194,7 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasKey("SupplierId");
 
-                    b.ToTable("Supplier", (string)null);
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -452,7 +455,7 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasIndex("ManagerId1");
 
-                    b.ToTable("AspNetUsers", null, t =>
+                    b.ToTable("AspNetUsers", t =>
                         {
                             t.Property("ManagerId")
                                 .HasColumnName("Staff_ManagerId");

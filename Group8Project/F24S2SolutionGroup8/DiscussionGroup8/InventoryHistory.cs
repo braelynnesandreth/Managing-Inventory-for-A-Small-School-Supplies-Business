@@ -9,12 +9,12 @@ namespace LibraryGroup8
     public class InventoryHistory
     {
         public int InventoryHistoryId { get; set; }
-        
-        public DateTime Date{ get; set; }
-        
+
+        public DateTime Date { get; set; }
+
         public int QuantityChange { get; set; }
         public string Reason { get; set; }
-
+        public int ProductId {get; set;}
         public Product Product { get; set; }
 
         public InventoryHistory() { }
@@ -24,6 +24,7 @@ namespace LibraryGroup8
             Date = date;
             this.QuantityChange = QuantityChange;
             this.Reason = Reason;
+            this.ProductId = ProductId;
 
 
             
