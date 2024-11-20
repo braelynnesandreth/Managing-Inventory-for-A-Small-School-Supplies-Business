@@ -4,6 +4,7 @@ using MVC_Group_8.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Group_8.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241120135945_AddedStaff")]
+    partial class AddedStaff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,6 +36,9 @@ namespace MVC_Group_8.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("QuantityChange")
                         .HasColumnType("int");
 
@@ -41,6 +47,9 @@ namespace MVC_Group_8.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("InventoryHistoryId");
+
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("InventoryHistory");
                 });
@@ -60,9 +69,6 @@ namespace MVC_Group_8.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InventoryHistoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MaxStock")
                         .HasColumnType("int");
 
@@ -78,9 +84,8 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("InventoryHistoryId");
-
-                    b.HasIndex("SupplierId");
+                    b.HasIndex("SupplierId")
+                        .IsUnique();
 
                     b.ToTable("Product");
                 });
@@ -123,9 +128,6 @@ namespace MVC_Group_8.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime2");
 
@@ -139,8 +141,6 @@ namespace MVC_Group_8.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("SaleId");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("StaffId1");
 
@@ -434,13 +434,11 @@ namespace MVC_Group_8.Data.Migrations
                 {
                     b.HasBaseType("LibraryGroup8.AppUser");
 
-                    b.Property<string>("ManagerID")
+                    b.Property<string>("ManagerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("ManagerID")
-                        .IsUnique()
-                        .HasFilter("[ManagerID] IS NOT NULL");
+                    b.HasIndex("ManagerId");
 
                     b.HasDiscriminator().HasValue("SmallBusinessOwner");
                 });
@@ -457,24 +455,33 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasIndex("ManagerId1");
 
+                    b.ToTable("AspNetUsers", t =>
+                        {
+                            t.Property("ManagerId")
+                                .HasColumnName("Staff_ManagerId");
+                        });
+
                     b.HasDiscriminator().HasValue("Staff");
+                });
+
+            modelBuilder.Entity("LibraryGroup8.InventoryHistory", b =>
+                {
+                    b.HasOne("LibraryGroup8.Product", "Product")
+                        .WithOne("InventoryHistory")
+                        .HasForeignKey("LibraryGroup8.InventoryHistory", "ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Product", b =>
                 {
-                    b.HasOne("LibraryGroup8.InventoryHistory", "InventoryHistory")
-                        .WithMany()
-                        .HasForeignKey("InventoryHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("LibraryGroup8.Supplier", "Supplier")
-                        .WithMany("Product")
-                        .HasForeignKey("SupplierId")
+                        .WithOne("Product")
+                        .HasForeignKey("LibraryGroup8.Product", "SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("InventoryHistory");
 
                     b.Navigation("Supplier");
                 });
@@ -488,7 +495,7 @@ namespace MVC_Group_8.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("LibraryGroup8.Supplier", "Supplier")
-                        .WithMany("RestockOrder")
+                        .WithMany("RestocksTheOrder")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -500,17 +507,9 @@ namespace MVC_Group_8.Data.Migrations
 
             modelBuilder.Entity("LibraryGroup8.Sale", b =>
                 {
-                    b.HasOne("LibraryGroup8.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("LibraryGroup8.Staff", "Staff")
                         .WithMany("Sales")
                         .HasForeignKey("StaffId1");
-
-                    b.Navigation("Product");
 
                     b.Navigation("Staff");
                 });
@@ -588,8 +587,8 @@ namespace MVC_Group_8.Data.Migrations
             modelBuilder.Entity("LibraryGroup8.SmallBusinessOwner", b =>
                 {
                     b.HasOne("LibraryGroup8.Manager", "Manager")
-                        .WithOne("SmallBusinessOwner")
-                        .HasForeignKey("LibraryGroup8.SmallBusinessOwner", "ManagerID")
+                        .WithMany()
+                        .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -607,6 +606,9 @@ namespace MVC_Group_8.Data.Migrations
 
             modelBuilder.Entity("LibraryGroup8.Product", b =>
                 {
+                    b.Navigation("InventoryHistory")
+                        .IsRequired();
+
                     b.Navigation("RestockOrder");
 
                     b.Navigation("SaleDetail");
@@ -619,16 +621,14 @@ namespace MVC_Group_8.Data.Migrations
 
             modelBuilder.Entity("LibraryGroup8.Supplier", b =>
                 {
-                    b.Navigation("Product");
+                    b.Navigation("Product")
+                        .IsRequired();
 
-                    b.Navigation("RestockOrder");
+                    b.Navigation("RestocksTheOrder");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Manager", b =>
                 {
-                    b.Navigation("SmallBusinessOwner")
-                        .IsRequired();
-
                     b.Navigation("StaffMembers");
                 });
 
