@@ -24,5 +24,7 @@ namespace LibraryGroup8
             var passwordHasher = new PasswordHasher<AppUser>();
             PasswordHash = passwordHasher.HashPassword(this, password);
         }
+
+       
     }
 }

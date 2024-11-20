@@ -22,6 +22,7 @@ namespace MVC_Group_8.Data
             RoleManager<IdentityRole> roleManager =
                 services.GetRequiredService<RoleManager<IdentityRole>>();
 
+            UserManager<Manager> managerUserManager = services.GetRequiredService<UserManager<Manager>>();
 
 
             string smallBusinessOwnerRole = "Small Business Owner";
@@ -56,8 +57,8 @@ namespace MVC_Group_8.Data
 
                 foreach (var manager in managers)
                 {
-                    userManager.CreateAsync(manager).Wait();
-                    userManager.AddToRoleAsync(manager, managerRole).Wait();
+                    managerUserManager.CreateAsync(manager).Wait();
+                    managerUserManager.AddToRoleAsync(manager, managerRole).Wait();  // Add manager role
                 }
 
                 // Create Small Business Owners and assign Managers
