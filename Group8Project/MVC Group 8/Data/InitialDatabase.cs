@@ -132,20 +132,20 @@ namespace MVC_Group_8.Data
            
             if (!database.Supplier.Any())
             {
-                Supplier supplier1 = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com" };
-                database.Supplier.Add(supplier1);
+                Supplier supplier = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com" };
+                database.Supplier.Add(supplier);
 
-                Supplier supplier2 = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com" };
-                database.Supplier.Add(supplier2);
+                supplier = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com" };
+                database.Supplier.Add(supplier);
 
-                Supplier supplier3 = new Supplier { Name = "Global Suppliers", ContactInfo = "info@globalsuppliers.com" };
-                database.Supplier.Add(supplier3);
+                supplier = new Supplier { Name = "Global Suppliers", ContactInfo = "info@globalsuppliers.com" };
+                database.Supplier.Add(supplier);
 
-                Supplier supplier4 = new Supplier { Name = "Best Products", ContactInfo = "support@bestproducts.com" };
-                database.Supplier.Add(supplier4);
+                supplier = new Supplier { Name = "Best Products", ContactInfo = "support@bestproducts.com" };
+                database.Supplier.Add(supplier);
 
-                Supplier supplier5 = new Supplier { Name = "Top Gear Suppliers", ContactInfo = "service@topgear.com" };
-                database.Supplier.Add(supplier5);
+                supplier = new Supplier { Name = "Top Gear Suppliers", ContactInfo = "service@topgear.com" };
+                database.Supplier.Add(supplier);
 
                 database.SaveChanges();
             }
@@ -237,21 +237,100 @@ namespace MVC_Group_8.Data
 
             if (!database.RestockOrder.Any())
             {
-                RestockOrder restockOrder1 = new RestockOrder { Supplier = "Target", Date = new DateTime(2024,6,5), Product = "Shirt", Status = "In transit" };
-                database.RestockOrder.Add(restockOrder1);
+                List<Product> productList = new List<Product>();
 
-                RestockOrder restockOrder2 = new RestockOrder { Supplier = "Walmart", Date = new DateTime(2024,4,7), Product = "Candle", Status = "Delivered" };
-                database.RestockOrder.Add(restockOrder2);
+                Product product =
+                    database.Product
+                    .Where(p => p.Name == "Pencil")
+                    .First();
+                productList.Add(product);
 
-                RestockOrder restockOrder3 = new RestockOrder { Supplier = "Amazon", Date = new DateTime(2023,12,16), Product = "Water Bottle", Status = "Ordered" };
-                database.RestockOrder.Add(restockOrder3);
+                product =
+                    database.Product
+                    .Where(p => p.Name == "Notebook")
+                    .First();
+                productList.Add(product);
 
-                RestockOrder restockOrder4 = new RestockOrder { Supplier = "Amazon", Date = new DateTime(2024,5,17), Product = "Shirt", Status = "in transit" };
-                database.RestockOrder.Add(restockOrder4);
+                product =
+                    database.Product
+                    .Where(p => p.Name == "Pen")
+                    .First();
+                productList.Add(product);
 
-                RestockOrder restockOrder5 = new RestockOrder { Supplier = "Target", Date = new DateTime(2024, 7, 8), Product = "Shoes", Status = "Delivered" };
-                database.RestockOrder.Add(restockOrder5);
+                product =
+                    database.Product
+                    .Where(p => p.Name == "Eraser")
+                    .First();
+                productList.Add(product);
 
+                product =
+                    database.Product
+                    .Where(p => p.Name == "Ruler")
+                    .First();
+                productList.Add(product);
+
+                List<Supplier> supplierList = new List<Supplier>();
+
+                Supplier supplier =
+                    database.Supplier
+                    .Where(su => su.Name == "ABC Supplies")
+                    .First();
+                supplierList.Add(supplier);
+
+                supplier =
+                    database.Supplier
+                    .Where(su => su.Name == "XYZ Corp")
+                    .First();
+                supplierList.Add(supplier);
+
+                supplier =
+                    database.Supplier
+                    .Where(su => su.Name == "Global Suppliers")
+                    .First();
+                supplierList.Add(supplier);
+
+                supplier =
+                    database.Supplier
+                    .Where(su => su.Name == "Best Products")
+                    .First();
+                supplierList.Add(supplier);
+
+                supplier =
+                    database.Supplier
+                    .Where(su => su.Name == "Top Gear Suppliers")
+                    .First();
+                supplierList.Add(supplier);
+
+                DateTime date1 = new DateTime(2024, 6, 5);
+
+
+                //Tried to use productList[0], supplierList[0] etc. and got errors
+                RestockOrder restockOrder = new RestockOrder("Pencil", "ABC Supplies", date1, "In Transit");
+                database.RestockOrder.Add(restockOrder);
+                database.SaveChanges();
+
+                DateTime date2 = new DateTime(2024, 4, 7);
+                
+                restockOrder = new RestockOrder("Notebook", "XYZ Corp", date2, "Delivered");
+                database.RestockOrder.Add(restockOrder);
+                database.SaveChanges();
+
+                DateTime date3 = new DateTime(2024, 1, 2);
+
+                restockOrder = new RestockOrder("Pen", "Global Suppliers", date3, "Ordered");
+                database.RestockOrder.Add(restockOrder);
+                database.SaveChanges();
+
+                DateTime date4 = new DateTime(2023, 2, 1);
+
+                restockOrder = new RestockOrder("Eraser", "Best Products", date4, "Delivered");
+                database.RestockOrder.Add(restockOrder);
+                database.SaveChanges();
+
+                DateTime date5 = new DateTime(2022, 4, 9);
+
+                restockOrder = new RestockOrder("Ruler", "Top Gear Suppliers", date5, "Ordered");
+                database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
             }
         }
