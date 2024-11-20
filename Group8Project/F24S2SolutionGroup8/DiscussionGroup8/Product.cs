@@ -14,7 +14,6 @@ namespace LibraryGroup8
         public int ReorderPoint { get; set; }
         public int MaxStock { get; set; }
 
-        public int SupplierId { get; set; }
         public Supplier Supplier { get; set; }
         public InventoryHistory InventoryHistory { get; set; }
 
@@ -27,6 +26,7 @@ namespace LibraryGroup8
         {
             SaleDetail = new List<SaleDetail>();
             RestockOrder = new List<RestockOrder>();
+            
         }
         
         public Product(int productId, string name, string description, int currentStock, int reorderPoint, int maxStock)
