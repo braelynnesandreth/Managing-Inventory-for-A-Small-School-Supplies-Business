@@ -10,44 +10,44 @@
   <Class Name="LibraryGroup8.Manager">
     <Position X="2" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAAAAAAABAIAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Manager.cs</FileName>
       <NewMemberFileName>SmallBusinessOwner.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibraryGroup8.Staff">
-    <Position X="4.5" Y="3.75" Width="1.5" />
+    <Position X="4.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAKBAAAAAAABAAgAAAAAAAAAAA=</HashCode>
       <FileName>Staff.cs</FileName>
       <NewMemberFileName>SmallBusinessOwner.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LibraryGroup8.SmallBusinessOwner" Collapsed="true">
-    <Position X="0.5" Y="3.75" Width="1.5" />
+  <Class Name="LibraryGroup8.SmallBusinessOwner">
+    <Position X="0.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAEAAAABAAAAAAAEAAAAAA=</HashCode>
       <FileName>SmallBusinessOwner.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibraryGroup8.Sale">
-    <Position X="4.75" Y="5.5" Width="1.5" />
+    <Position X="5.5" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAEQA=</HashCode>
+      <HashCode>AAACAAAAAAgAAAAAAAAAAIAAACAAAAACAAAAAAEAEAA=</HashCode>
       <FileName>Sale.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibraryGroup8.Product">
     <Position X="1.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAgAACAAAAAAAQAAAEAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>EAAAACAAAAAgAICAAAEBAAQAAAEAAAAAAQAAAAAgAAA=</HashCode>
       <FileName>Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibraryGroup8.SaleDetail">
     <Position X="3.5" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAACAIAAAAAAAAAAAAAAAAAAAAAAAAAAACAAgAAAAAA=</HashCode>
+      <HashCode>MAACAIAAAAAAAAAAAAAAAAAAAAAAAAAAACAAgAAAEAA=</HashCode>
       <FileName>SaleDetail.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -61,14 +61,14 @@
   <Class Name="LibraryGroup8.Supplier">
     <Position X="0.5" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <HashCode>AAACACAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Supplier.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibraryGroup8.RestockOrder">
     <Position X="1.75" Y="12.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACABAEAAAAAIAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>EAACABAEAAAAAIAAAAAAAAAAAAAAAAABAAAAAAAgAAA=</HashCode>
       <FileName>RestockOrder.cs</FileName>
     </TypeIdentifier>
   </Class>

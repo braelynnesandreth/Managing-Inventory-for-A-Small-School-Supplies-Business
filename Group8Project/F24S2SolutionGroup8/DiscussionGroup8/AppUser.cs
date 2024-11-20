@@ -16,15 +16,13 @@ namespace LibraryGroup8
         public AppUser(string firstname, string lastname,string email, string password)
         {
 
-            this.Firstname = firstname;
-            this.Lastname = lastname;
-            this.Email = email;
-            this.UserName = email;
-            PasswordHasher<AppUser> passwordHasher = new PasswordHasher<AppUser>();
-            this.PasswordHash = passwordHasher.HashPassword(this, password);
+            Firstname = firstname;
+            Lastname = lastname;
+            Email = email;
+            UserName = email;
 
-
+            var passwordHasher = new PasswordHasher<AppUser>();
+            PasswordHash = passwordHasher.HashPassword(this, password);
         }
     }
-
 }

@@ -21,9 +21,11 @@ namespace MVC_Group_8.Data
         public object Roles { get; internal set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+             : base(options)
         {
         }
+<<<<<<< HEAD
+=======
 
        
 
@@ -31,8 +33,8 @@ namespace MVC_Group_8.Data
         {
             throw new NotImplementedException();
         }
+>>>>>>> origin/master
     }
 }
-
 
 

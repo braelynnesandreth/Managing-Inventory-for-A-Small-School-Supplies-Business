@@ -7,16 +7,12 @@ namespace LibraryGroup8
 {
     public class SmallBusinessOwner : AppUser
     {
-        public string ManagerID { get; set; } 
-        public Manager Manager { get; set; }  
+        public string ManagerId { get; set; }
+        public Manager Manager { get; set; }
 
-        public SmallBusinessOwner() { }
+        public void ApproveRestock(RestockOrder order) { }
+        public void ViewSalesInsights(List<Sale> sales) { }
 
-        public SmallBusinessOwner(string firstname, string lastname, string email, string password)
-           : base(firstname, lastname, email, password)
-        {
-           
-        }
     }
 }
 
