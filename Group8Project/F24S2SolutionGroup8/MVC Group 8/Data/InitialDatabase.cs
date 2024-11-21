@@ -61,29 +61,27 @@ namespace MVC_Group_8.Data
                 Manager manager = new Manager("Marcus", "Santiago", "marcussantiago@example.com", "Dolphins123");
                 userManager.CreateAsync(manager).Wait();
                 userManager.AddToRoleAsync(manager, managerRole).Wait();
-               // database.Manager.Add(manager);
+               
 
                 manager = new Manager("Sophie", "Henson", "sophiehenson@example.com", "StarryNight5");
                 userManager.CreateAsync(manager).Wait();
                 userManager.AddToRoleAsync(manager, managerRole).Wait();
-                //database.Manager.Add(manager);
+                
 
-                Manager manager3 = new Manager("Olivia", "Brown", "oliviabrown@example.com", "Sunshine12");
-                userManager.CreateAsync(manager3).Wait();
-                userManager.AddToRoleAsync(manager3, managerRole).Wait();
-               // database.Manager.Add(manager3);
+                manager = new Manager("Olivia", "Brown", "oliviabrown@example.com", "Sunshine12");
+                userManager.CreateAsync(manager).Wait();
+                userManager.AddToRoleAsync(manager, managerRole).Wait();
+               
 
-                Manager manager4 = new Manager("James", "Taylor", "jamestaylor@example.com", "Clouds45");
-                userManager.CreateAsync(manager4).Wait();
-                userManager.AddToRoleAsync(manager4, managerRole).Wait();
-                //database.Manager.Add(manager4);
+                manager = new Manager("James", "Taylor", "jamestaylor@example.com", "Clouds45");
+                userManager.CreateAsync(manager).Wait();
+                userManager.AddToRoleAsync(manager, managerRole).Wait();
+                
 
-                Manager manager5 = new Manager("Liam", "Walker", "liamwalker@example.com", "RainyDay9");
-                userManager.CreateAsync(manager5).Wait();
-                userManager.AddToRoleAsync(manager5, managerRole).Wait();
-               // database.Manager.Add(manager5);
-
-               // database.SaveChanges(); // Save after adding all managers
+                manager = new Manager("Liam", "Walker", "liamwalker@example.com", "RainyDay9");
+                userManager.CreateAsync(manager).Wait();
+                userManager.AddToRoleAsync(manager, managerRole).Wait();
+              
             }
 
 
@@ -91,32 +89,31 @@ namespace MVC_Group_8.Data
             if (!database.SmallBusinessOwner.Any())
             {
                 var managersList = database.Manager.ToList();
-                SmallBusinessOwner smallBusinessOwner1 = new SmallBusinessOwner { Firstname = "Jordan", Lastname = "Whitaker", Email = "jordanwhitaker@example.com", UserName = "jordanwhitaker@example.com", ManagerId = managersList[0].Id };
-                userManager.CreateAsync(smallBusinessOwner1).Wait();
-                userManager.AddToRoleAsync(smallBusinessOwner1, smallBusinessOwnerRole).Wait();
-                database.SmallBusinessOwner.Add(smallBusinessOwner1);
+                
+                SmallBusinessOwner smallBusinessOwner = new SmallBusinessOwner { Firstname = "Jordan", Lastname = "Whitaker", Email = "jordanwhitaker@example.com", UserName = "jordanwhitaker@example.com", ManagerId = managersList[0].Id };
+                userManager.CreateAsync(smallBusinessOwner).Wait();
+                userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
+                
 
-                SmallBusinessOwner smallBusinessOwner2 = new SmallBusinessOwner { Firstname = "Brooke", Lastname = "Mesinere", Email = "brookemesinere@example.com", UserName = "brookemesinere@example.com", ManagerId = managersList[1].Id };
-                userManager.CreateAsync(smallBusinessOwner2).Wait();
-                userManager.AddToRoleAsync(smallBusinessOwner2, smallBusinessOwnerRole).Wait();
-                database.SmallBusinessOwner.Add(smallBusinessOwner2);
+                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Brooke", Lastname = "Mesinere", Email = "brookemesinere@example.com", UserName = "brookemesinere@example.com", ManagerId = managersList[1].Id };
+                userManager.CreateAsync(smallBusinessOwner).Wait();
+                userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
+                
 
-                SmallBusinessOwner smallBusinessOwner3 = new SmallBusinessOwner { Firstname = "Emma", Lastname = "Johnson", Email = "emmajohnson@example.com", UserName = "emmajohnson@example.com", ManagerId = managersList[2].Id };
-                userManager.CreateAsync(smallBusinessOwner3).Wait();
-                userManager.AddToRoleAsync(smallBusinessOwner3, smallBusinessOwnerRole).Wait();
-                database.SmallBusinessOwner.Add(smallBusinessOwner3);
+                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Emma", Lastname = "Johnson", Email = "emmajohnson@example.com", UserName = "emmajohnson@example.com", ManagerId = managersList[2].Id };
+                userManager.CreateAsync(smallBusinessOwner).Wait();
+                userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
+                
 
-                SmallBusinessOwner smallBusinessOwner4 = new SmallBusinessOwner { Firstname = "Ethan", Lastname = "Martinez", Email = "ethanmartinez@example.com", UserName = "ethanmartinez@example.com", ManagerId = managersList[3].Id };
-                userManager.CreateAsync(smallBusinessOwner4).Wait();
-                userManager.AddToRoleAsync(smallBusinessOwner4, smallBusinessOwnerRole).Wait();
-                database.SmallBusinessOwner.Add(smallBusinessOwner4);
+                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Ethan", Lastname = "Martinez", Email = "ethanmartinez@example.com", UserName = "ethanmartinez@example.com", ManagerId = managersList[3].Id };
+                userManager.CreateAsync(smallBusinessOwner).Wait();
+                userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
+                
 
-                SmallBusinessOwner smallBusinessOwner5 = new SmallBusinessOwner { Firstname = "Sophia", Lastname = "White", Email = "sophiawhite@example.com", UserName = "sophiawhite@example.com", ManagerId = managersList[4].Id };
-                userManager.CreateAsync(smallBusinessOwner5).Wait();
-                userManager.AddToRoleAsync(smallBusinessOwner5, smallBusinessOwnerRole).Wait();
-                database.SmallBusinessOwner.Add(smallBusinessOwner5);
-
-                database.SaveChanges(); // Save after adding all small business owners
+                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Sophia", Lastname = "White", Email = "sophiawhite@example.com", UserName = "sophiawhite@example.com", ManagerId = managersList[4].Id };
+                userManager.CreateAsync(smallBusinessOwner).Wait();
+                userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
+                
             }
 
 
@@ -126,6 +123,13 @@ namespace MVC_Group_8.Data
 
             if (!database.Staff.Any())
             {
+                //this is how it should be 
+               Staff staff = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
+                userManager.CreateAsync(staff).Wait();
+                userManager.AddToRoleAsync(staff, staffRole).Wait();
+
+                
+                //change this to look like that^??
                 Staff staff1 = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
                 var result1 = userManager.CreateAsync(staff1, "Password123!").Result;
                 if (result1.Succeeded)
@@ -224,20 +228,20 @@ namespace MVC_Group_8.Data
 
             if (!database.Sale.Any())
             {
-                Sale sale1 = new Sale { SaleDate = DateTime.Now, SaleTime = TimeSpan.FromHours(9), StaffId = 1 };
-                database.Sale.Add(sale1);
+                Sale sale = new Sale { SaleDate = DateTime.Now, SaleTime = TimeSpan.FromHours(9), StaffId = 1 };
+                database.Sale.Add(sale);
 
-                Sale sale2 = new Sale { SaleDate = DateTime.Now.AddDays(-1), SaleTime = TimeSpan.FromHours(10), StaffId = 2 };
-                database.Sale.Add(sale2);
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-1), SaleTime = TimeSpan.FromHours(10), StaffId = 2 };
+                database.Sale.Add(sale);
 
-                Sale sale3 = new Sale { SaleDate = DateTime.Now.AddDays(-2), SaleTime = TimeSpan.FromHours(11), StaffId = 3 };
-                database.Sale.Add(sale3);
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-2), SaleTime = TimeSpan.FromHours(11), StaffId = 3 };
+                database.Sale.Add(sale);
 
-                Sale sale4 = new Sale { SaleDate = DateTime.Now.AddDays(-3), SaleTime = TimeSpan.FromHours(12), StaffId = 4 };
-                database.Sale.Add(sale4);
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-3), SaleTime = TimeSpan.FromHours(12), StaffId = 4 };
+                database.Sale.Add(sale);
 
-                Sale sale5 = new Sale { SaleDate = DateTime.Now.AddDays(-4), SaleTime = TimeSpan.FromHours(13), StaffId = 5 };
-                database.Sale.Add(sale5);
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-4), SaleTime = TimeSpan.FromHours(13), StaffId = 5 };
+                database.Sale.Add(sale);
 
                 database.SaveChanges();
             }
@@ -245,20 +249,20 @@ namespace MVC_Group_8.Data
 
             if (!database.SaleDetail.Any())
             {
-                SaleDetail saleDetail1 = new SaleDetail { SaleId = 1, ProductId = 1, Quantity = 10, UnitPrice = 1.50m };
-                database.SaleDetail.Add(saleDetail1);
+                SaleDetail saleDetail = new SaleDetail { SaleId = 1, ProductId = 1, Quantity = 10, UnitPrice = 1.50m };
+                database.SaleDetail.Add(saleDetail);
 
-                SaleDetail saleDetail2 = new SaleDetail { SaleId = 1, ProductId = 2, Quantity = 5, UnitPrice = 2.00m };
-                database.SaleDetail.Add(saleDetail2);
+                saleDetail = new SaleDetail { SaleId = 1, ProductId = 2, Quantity = 5, UnitPrice = 2.00m };
+                database.SaleDetail.Add(saleDetail);
 
-                SaleDetail saleDetail3 = new SaleDetail { SaleId = 2, ProductId = 3, Quantity = 3, UnitPrice = 1.25m };
-                database.SaleDetail.Add(saleDetail3);
+                saleDetail = new SaleDetail { SaleId = 2, ProductId = 3, Quantity = 3, UnitPrice = 1.25m };
+                database.SaleDetail.Add(saleDetail);
 
-                SaleDetail saleDetail4 = new SaleDetail { SaleId = 3, ProductId = 4, Quantity = 7, UnitPrice = 0.75m };
-                database.SaleDetail.Add(saleDetail4);
+                saleDetail = new SaleDetail { SaleId = 3, ProductId = 4, Quantity = 7, UnitPrice = 0.75m };
+                database.SaleDetail.Add(saleDetail);
 
-                SaleDetail saleDetail5 = new SaleDetail { SaleId = 4, ProductId = 5, Quantity = 2, UnitPrice = 1.10m };
-                database.SaleDetail.Add(saleDetail5);
+                saleDetail = new SaleDetail { SaleId = 4, ProductId = 5, Quantity = 2, UnitPrice = 1.10m };
+                database.SaleDetail.Add(saleDetail);
 
                 database.SaveChanges();
             }
@@ -266,20 +270,20 @@ namespace MVC_Group_8.Data
 
             if (!database.InventoryHistory.Any())
             {
-                InventoryHistory inventoryHistory1 = new InventoryHistory { InventoryHistoryId = 1, Date = new DateTime(20204, 1, 1), QuantityChange = 10, Reason = "Found a better price" };
-                database.InventoryHistory.Add(inventoryHistory1);
+                InventoryHistory inventoryHistory = new InventoryHistory { InventoryHistoryId = 1, Date = new DateTime(20204, 1, 1), QuantityChange = 10, Reason = "Found a better price" };
+                database.InventoryHistory.Add(inventoryHistory);
 
-                InventoryHistory inventoryHistory2 = new InventoryHistory { InventoryHistoryId = 2, Date = new DateTime(2024, 4, 1), QuantityChange = 20, Reason = "Do not need it anympore" };
-                database.InventoryHistory.Add(inventoryHistory2);
+                inventoryHistory = new InventoryHistory { InventoryHistoryId = 2, Date = new DateTime(2024, 4, 1), QuantityChange = 20, Reason = "Do not need it anympore" };
+                database.InventoryHistory.Add(inventoryHistory);
 
-                InventoryHistory inventoryHistory3 = new InventoryHistory { InventoryHistoryId = 3, Date = new DateTime(2024, 5, 1), QuantityChange = 30, Reason = "Product broke in the delivery process" };
-                database.InventoryHistory.Add(inventoryHistory3);
+                inventoryHistory = new InventoryHistory { InventoryHistoryId = 3, Date = new DateTime(2024, 5, 1), QuantityChange = 30, Reason = "Product broke in the delivery process" };
+                database.InventoryHistory.Add(inventoryHistory);
 
-                InventoryHistory inventoryHistory4 = new InventoryHistory { InventoryHistoryId = 4, Date = new DateTime(2023, 6, 1), QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
-                database.InventoryHistory.Add(inventoryHistory4);
+                inventoryHistory = new InventoryHistory { InventoryHistoryId = 4, Date = new DateTime(2023, 6, 1), QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
+                database.InventoryHistory.Add(inventoryHistory);
 
-                InventoryHistory inventoryHistory5 = new InventoryHistory { InventoryHistoryId = 5, Date = new DateTime(2022, 4, 1), QuantityChange = 50, Reason = "The size did not fix, too small" };
-                database.InventoryHistory.Add(inventoryHistory5);
+                inventoryHistory = new InventoryHistory { InventoryHistoryId = 5, Date = new DateTime(2022, 4, 1), QuantityChange = 50, Reason = "The size did not fix, too small" };
+                database.InventoryHistory.Add(inventoryHistory);
 
                 database.SaveChanges();
             }
