@@ -8,8 +8,17 @@ namespace LibraryGroup8
 {
     public class SmallBusinessOwner : AppUser
     {
-        public string ManagerId { get; set; }
-        public Manager Manager { get; set; }
+        public string ManagerId { get; set; } 
+        public Manager Manager { get; set; }  
+
+        public SmallBusinessOwner() { }
+
+        public SmallBusinessOwner(string firstname, string lastname, string email, string password, string managerId)
+            : base(firstname, lastname, email, password)
+        {
+            ManagerId = managerId;
+        }
+
+        public void ManageBusiness() => throw new NotImplementedException();
     }
 }
-

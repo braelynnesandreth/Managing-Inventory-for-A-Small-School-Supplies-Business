@@ -28,6 +28,7 @@ namespace MVC_Group_8.Data
             string smallBusinessOwnerRole = "Small Business Owner";
             string managerRole = "Manager";
             string staffRole = "Staff";
+            string adminRole = "Admin";
 
             if (!database.Roles.Any())
             {
@@ -40,60 +41,95 @@ namespace MVC_Group_8.Data
                 role = new IdentityRole(staffRole);
                 roleManager.CreateAsync(role).Wait();
 
+                if (!database.Users.Any())
+                {
+                    // Create an admin user if no users exist
+                    var adminUser = new AppUser
+                    {
+                        Firstname = "Admin",
+                        Lastname = "User",
+                        Email = "admin@example.com",
+                        UserName = "admin@example.com"
+                    };
+
+                    var result = userManager.CreateAsync(adminUser, "AdminPassword123!").Result;
+                    if (result.Succeeded)
+                    {
+                        // Assign the Admin role to the user
+                        userManager.AddToRoleAsync(adminUser, adminRole).Wait();
+                    }
+                }
 
 
             }
-            if (!database.Users.Any())
+            if (!database.Manager.Any())
             {
-                // Create Managers
-                var managers = new List<Manager>
-            {
-                new Manager("Marcus", "Santiago", "marcussantiago@example.com", "Dolphins123"),
-                new Manager("Sophie", "Henson", "sophiehenson@example.com", "StarryNight5"),
-                new Manager("Olivia", "Brown", "oliviabrown@example.com", "Sunshine12"),
-                new Manager("James", "Taylor", "jamestaylor@example.com", "Clouds45"),
-                new Manager("Liam", "Walker", "liamwalker@example.com", "RainyDay9")
-                };
+                Manager manager1 = new Manager("Marcus", "Santiago", "marcussantiago@example.com", "Dolphins123");
+                managerUserManager.CreateAsync(manager1).Wait();
+                managerUserManager.AddToRoleAsync(manager1, managerRole).Wait();
+                database.Manager.Add(manager1);
 
-                foreach (var manager in managers)
-                {
-                    managerUserManager.CreateAsync(manager).Wait();
-                    managerUserManager.AddToRoleAsync(manager, managerRole).Wait();  // Add manager role
-                }
+                Manager manager2 = new Manager("Sophie", "Henson", "sophiehenson@example.com", "StarryNight5");
+                managerUserManager.CreateAsync(manager2).Wait();
+                managerUserManager.AddToRoleAsync(manager2, managerRole).Wait();
+                database.Manager.Add(manager2);
 
-                // Create Small Business Owners and assign Managers
-                var smallBusinessOwners = new List<SmallBusinessOwner>
-                 {
-                 new SmallBusinessOwner { Firstname = "Jordan", Lastname = "Whitaker", Email = "jordanwhitaker@example.com", UserName = "jordanwhitaker@example.com", Manager = managers[0] },
-                 new SmallBusinessOwner { Firstname = "Brooke", Lastname = "Mesinere", Email = "brookemesinere@example.com", UserName = "brookemesinere@example.com", Manager = managers[1] },
-                 new SmallBusinessOwner { Firstname = "Emma", Lastname = "Johnson", Email = "emmajohnson@example.com", UserName = "emmajohnson@example.com", Manager = managers[2] },
-                 new SmallBusinessOwner { Firstname = "Ethan", Lastname = "Martinez", Email = "ethanmartinez@example.com", UserName = "ethanmartinez@example.com", Manager = managers[3] },
-                 new SmallBusinessOwner { Firstname = "Sophia", Lastname = "White", Email = "sophiawhite@example.com", UserName = "sophiawhite@example.com", Manager = managers[4] }
-                 };
+                Manager manager3 = new Manager("Olivia", "Brown", "oliviabrown@example.com", "Sunshine12");
+                managerUserManager.CreateAsync(manager3).Wait();
+                managerUserManager.AddToRoleAsync(manager3, managerRole).Wait();
+                database.Manager.Add(manager3);
 
-                foreach (var smallBusinessOwner in smallBusinessOwners)
-                {
-                    smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner).Wait();
-                    smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
-                }
+                Manager manager4 = new Manager("James", "Taylor", "jamestaylor@example.com", "Clouds45");
+                managerUserManager.CreateAsync(manager4).Wait();
+                managerUserManager.AddToRoleAsync(manager4, managerRole).Wait();
+                database.Manager.Add(manager4);
 
-                // Create AppUsers
-                var appUsers = new List<AppUser>
-                 {
-                 new AppUser { Firstname = "Lucas", Lastname = "Scott", Email = "lucasscott@example.com", UserName = "lucasscott@example.com", PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "Password1") },
-                 new AppUser { Firstname = "Mia", Lastname = "Clark", Email = "miaclark@example.com", UserName = "miaclark@example.com", PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "Password2") },
-                 new AppUser { Firstname = "Noah", Lastname = "Harris", Email = "noahharris@example.com", UserName = "noahharris@example.com", PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "Password3") },
-                 new AppUser { Firstname = "Ava", Lastname = "Hall", Email = "avahall@example.com", UserName = "avahall@example.com", PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "Password4") },
-                 new AppUser { Firstname = "Isabella", Lastname = "Lewis", Email = "isabellalewis@example.com", UserName = "isabellalewis@example.com", PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "Password5") }
-                };
+                Manager manager5 = new Manager("Liam", "Walker", "liamwalker@example.com", "RainyDay9");
+                managerUserManager.CreateAsync(manager5).Wait();
+                managerUserManager.AddToRoleAsync(manager5, managerRole).Wait();
+                database.Manager.Add(manager5);
 
-
-
-                foreach (var appUser in appUsers)
-                {
-                    userManager.CreateAsync(appUser).Wait();
-                }
+                database.SaveChanges(); // Save after adding all managers
             }
+
+
+            // Create Small Business Owners and assign Managers
+            if (!database.SmallBusinessOwner.Any())
+            {
+                var managersList = database.Manager.ToList();
+                SmallBusinessOwner smallBusinessOwner1 = new SmallBusinessOwner { Firstname = "Jordan", Lastname = "Whitaker", Email = "jordanwhitaker@example.com", UserName = "jordanwhitaker@example.com", ManagerId = managersList[0].Id };
+                smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner1).Wait();
+                smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner1, smallBusinessOwnerRole).Wait();
+                database.SmallBusinessOwner.Add(smallBusinessOwner1);
+
+                SmallBusinessOwner smallBusinessOwner2 = new SmallBusinessOwner { Firstname = "Brooke", Lastname = "Mesinere", Email = "brookemesinere@example.com", UserName = "brookemesinere@example.com", ManagerId = managersList[1].Id };
+                smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner2).Wait();
+                smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner2, smallBusinessOwnerRole).Wait();
+                database.SmallBusinessOwner.Add(smallBusinessOwner2);
+
+                SmallBusinessOwner smallBusinessOwner3 = new SmallBusinessOwner { Firstname = "Emma", Lastname = "Johnson", Email = "emmajohnson@example.com", UserName = "emmajohnson@example.com", ManagerId = managersList[2].Id };
+                smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner3).Wait();
+                smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner3, smallBusinessOwnerRole).Wait();
+                database.SmallBusinessOwner.Add(smallBusinessOwner3);
+
+                SmallBusinessOwner smallBusinessOwner4 = new SmallBusinessOwner { Firstname = "Ethan", Lastname = "Martinez", Email = "ethanmartinez@example.com", UserName = "ethanmartinez@example.com", ManagerId = managersList[3].Id };
+                smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner4).Wait();
+                smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner4, smallBusinessOwnerRole).Wait();
+                database.SmallBusinessOwner.Add(smallBusinessOwner4);
+
+                SmallBusinessOwner smallBusinessOwner5 = new SmallBusinessOwner { Firstname = "Sophia", Lastname = "White", Email = "sophiawhite@example.com", UserName = "sophiawhite@example.com", ManagerId = managersList[4].Id };
+                smallBusinessOwnerUserManager.CreateAsync(smallBusinessOwner5).Wait();
+                smallBusinessOwnerUserManager.AddToRoleAsync(smallBusinessOwner5, smallBusinessOwnerRole).Wait();
+                database.SmallBusinessOwner.Add(smallBusinessOwner5);
+
+                database.SaveChanges(); // Save after adding all small business owners
+            }
+
+
+
+
+
+
             if (!database.Staff.Any())
             {
                 Staff staff1 = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
