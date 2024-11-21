@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Group_8.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241120151359_AddedAppUser")]
-    partial class AddedAppUser
+    [Migration("20241121222816_AddedAllClasses")]
+    partial class AddedAllClasses
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,7 +1,7 @@
 using LibraryGroup8;
+using MVC_Group_8.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MVC_Group_8.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

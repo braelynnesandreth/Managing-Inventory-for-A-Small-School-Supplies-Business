@@ -6,29 +6,31 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
 @if (User.Identity.IsAuthenticated)
 {
-    <h2>Hello, @User.Identity.Name!</h2>
+    <h2 class="text-primary">Hello, @User.Identity.Name!</h2>
 
-    @* Section for Business Owner*@
-    if (User.IsInRole("Small Business Owner"))
-    {
-        <h1>You have acess to approve restock requests and view sales trends</h1>
-    }
-    else if (User.IsInRole("Manager"))
-    {
-
-        <h1>You can review inventory history and monitor restocking trends</h1>
-        
-    }
-    else if (User.IsInRole("Staff"))
-    {
-        <h1>Update inventory after sales or restocks</h1>
-        
-        
-    }
+    <div class="role-specific">
+        @* Section for Small Business Owner *@
+        @if (User.IsInRole("Small Business Owner"))
+        {
+            <h3>Role: Small Business Owner</h3>
+            <p>You have access to approve restock requests and view sales trends.</p>
+        }
+        else if (User.IsInRole("Manager"))
+        {
+            <h3>Role: Manager</h3>
+            <p>You can review inventory history and monitor restocking trends.</p>
+        }
+        else if (User.IsInRole("Staff"))
+        {
+            <h3>Role: Staff</h3>
+            <p>You can update inventory after sales or restocks.</p>
+        }
+    </div>
 }
 else
 {
-    <h1>Please log in to access the Inventory Management System</h1>
+    <h2 class="text-danger">Please log in to access the Inventory Management System</h2>
 }

@@ -29,9 +29,9 @@ namespace LibraryGroup8
            
         }
 
-        public Supplier(string name, string contactInfo)
+        public Supplier(/*Product product,*/ string name, string contactInfo)
         {
-            Product = Product;
+            //Product = product;
             Name = name;
             ContactInfo = contactInfo;
             RestocksTheOrder = new List<RestockOrder>();

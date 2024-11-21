@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\F24S2SolutionGroup8\DiscussionGroup8\LibraryGroup8.csproj" />
+    <ProjectReference Include="..\DiscussionGroup8\LibraryGroup8.csproj" />
   </ItemGroup>
+
 
 </Project>

@@ -25,6 +25,9 @@ namespace LibraryGroup8
             PasswordHash = passwordHasher.HashPassword(this, password);
         }
 
-       
+
+       // public bool ApproveRestock(RestockOrder order) { }
+
+       // public static Sale ViewSalesInsights(List<Sale> sales) { }
     }
 }
