@@ -130,45 +130,45 @@ namespace MVC_Group_8.Data
 
                 
                 //change this to look like that^??
-                Staff staff1 = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
-                var result1 = userManager.CreateAsync(staff1, "Password123!").Result;
+                staff = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
+                var result1 = userManager.CreateAsync(staff, "Password123!").Result;
                 if (result1.Succeeded)
                 {
-                    userManager.AddToRoleAsync(staff1, "Staff").Wait();
+                    userManager.AddToRoleAsync(staff, "Staff").Wait();
                 }
-                database.Staff.Add(staff1);
+                database.Staff.Add(staff);
 
-                Staff staff2 = new Staff { Firstname = "Jane", Lastname = "Smith", Email = "jane.smith@example.com", UserName = "jane.smith@example.com", ManagerId = 1 };
-                var result2 = userManager.CreateAsync(staff2, "Password123!").Result;
+                staff = new Staff { Firstname = "Jane", Lastname = "Smith", Email = "jane.smith@example.com", UserName = "jane.smith@example.com", ManagerId = 1 };
+                var result2 = userManager.CreateAsync(staff, "Password123!").Result;
                 if (result2.Succeeded)
                 {
-                    userManager.AddToRoleAsync(staff2, "Staff").Wait();
+                    userManager.AddToRoleAsync(staff, "Staff").Wait();
                 }
-                database.Staff.Add(staff2);
+                database.Staff.Add(staff);
 
-                Staff staff3 = new Staff { Firstname = "Mark", Lastname = "Johnson", Email = "mark.johnson@example.com", UserName = "mark.johnson@example.com", ManagerId = 2 };
-                var result3 = userManager.CreateAsync(staff3, "Password123!").Result;
+                staff = new Staff { Firstname = "Mark", Lastname = "Johnson", Email = "mark.johnson@example.com", UserName = "mark.johnson@example.com", ManagerId = 2 };
+                var result3 = userManager.CreateAsync(staff, "Password123!").Result;
                 if (result3.Succeeded)
                 {
-                    userManager.AddToRoleAsync(staff3, "Staff").Wait();
+                    userManager.AddToRoleAsync(staff, "Staff").Wait();
                 }
-                database.Staff.Add(staff3);
+                database.Staff.Add(staff);
 
-                Staff staff4 = new Staff { Firstname = "Lucy", Lastname = "Williams", Email = "lucy.williams@example.com", UserName = "lucy.williams@example.com", ManagerId = 3 };
-                var result4 = userManager.CreateAsync(staff4, "Password123!").Result;
+                staff = new Staff { Firstname = "Lucy", Lastname = "Williams", Email = "lucy.williams@example.com", UserName = "lucy.williams@example.com", ManagerId = 3 };
+                var result4 = userManager.CreateAsync(staff, "Password123!").Result;
                 if (result4.Succeeded)
                 {
-                    userManager.AddToRoleAsync(staff4, "Staff").Wait();
+                    userManager.AddToRoleAsync(staff, "Staff").Wait();
                 }
-                database.Staff.Add(staff4);
+                database.Staff.Add(staff);
 
-                Staff staff5 = new Staff { Firstname = "Mason", Lastname = "Brown", Email = "mason.brown@example.com", UserName = "mason.brown@example.com", ManagerId = 4 };
-                var result5 = userManager.CreateAsync(staff5, "Password123!").Result;
+                staff = new Staff { Firstname = "Mason", Lastname = "Brown", Email = "mason.brown@example.com", UserName = "mason.brown@example.com", ManagerId = 4 };
+                var result5 = userManager.CreateAsync(staff, "Password123!").Result;
                 if (result5.Succeeded)
                 {
-                    userManager.AddToRoleAsync(staff5, "Staff").Wait();
+                    userManager.AddToRoleAsync(staff, "Staff").Wait();
                 }
-                database.Staff.Add(staff5);
+                database.Staff.Add(staff);
 
                 database.SaveChanges();
             }
@@ -177,20 +177,20 @@ namespace MVC_Group_8.Data
 
             if (!database.Product.Any())
             {
-                Product product1 = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
-                database.Product.Add(product1);
+                Product product = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
+                database.Product.Add(product);
 
-                Product product2 = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
-                database.Product.Add(product2);
+                product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
+                database.Product.Add(product);
 
-                Product product3 = new Product { Name = "Pen", Description = "Ballpoint pen", CurrentStock = 200, ReorderPoint = 40, MaxStock = 500 };
-                database.Product.Add(product3);
+                product = new Product { Name = "Pen", Description = "Ballpoint pen", CurrentStock = 200, ReorderPoint = 40, MaxStock = 500 };
+                database.Product.Add(product);
 
-                Product product4 = new Product { Name = "Eraser", Description = "Rubber eraser", CurrentStock = 75, ReorderPoint = 15, MaxStock = 150 };
-                database.Product.Add(product4);
+                product = new Product { Name = "Eraser", Description = "Rubber eraser", CurrentStock = 75, ReorderPoint = 15, MaxStock = 150 };
+                database.Product.Add(product);
 
-                Product product5 = new Product { Name = "Ruler", Description = "Plastic ruler 30 cm", CurrentStock = 50, ReorderPoint = 10, MaxStock = 100 };
-                database.Product.Add(product5);
+                product = new Product { Name = "Ruler", Description = "Plastic ruler 30 cm", CurrentStock = 50, ReorderPoint = 10, MaxStock = 100 };
+                database.Product.Add(product);
 
                 database.SaveChanges();
             }
@@ -199,12 +199,12 @@ namespace MVC_Group_8.Data
             if (!database.Supplier.Any())
             {
 
-                Product product1 = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
-                database.Product.Add(product1);
+                Product product = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
+                database.Product.Add(product);
                 database.SaveChanges();
 
-                Supplier supplier1 = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com", Product = product1 };
-                database.Supplier.Add(supplier1);
+                Supplier supplier = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com", Product = product };
+                database.Supplier.Add(supplier);
 
 
                 //Product product = database.Product.First();
@@ -212,12 +212,12 @@ namespace MVC_Group_8.Data
                 //database.Supplier.Add(supplier1);
                 //database.SaveChanges();
 
-                Product product2 = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
-                database.Product.Add(product2);
+                product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
+                database.Product.Add(product);
                 database.SaveChanges();
 
-                Supplier supplier2 = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com", Product = product2 };
-                database.Supplier.Add(supplier2);
+                supplier = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com", Product = product };
+                database.Supplier.Add(supplier);
 
 
 
@@ -326,34 +326,34 @@ namespace MVC_Group_8.Data
                 supplier = database.Supplier.Where(su => su.Name == "Top Gear Suppliers").First();
                 supplierList.Add(supplier);
 
-                DateTime date1 = new DateTime(2024, 6, 5);
+                DateTime date = new DateTime(2024, 6, 5);
 
                 // Now use the actual Product and Supplier objects from the lists
-                RestockOrder restockOrder = new RestockOrder(supplierList[0], productList[0], date1, "In Transit");
+                RestockOrder restockOrder = new RestockOrder(supplierList[0], productList[0], date, "In Transit");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
-                DateTime date2 = new DateTime(2024, 4, 7);
+                date = new DateTime(2024, 4, 7);
 
-                restockOrder = new RestockOrder(supplierList[1], productList[1], date2, "Delivered");
+                restockOrder = new RestockOrder(supplierList[1], productList[1], date, "Delivered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
-                DateTime date3 = new DateTime(2024, 1, 2);
+                date = new DateTime(2024, 1, 2);
 
-                restockOrder = new RestockOrder(supplierList[2], productList[2], date3, "Ordered");
+                restockOrder = new RestockOrder(supplierList[2], productList[2], date, "Ordered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
-                DateTime date4 = new DateTime(2023, 2, 1);
+                date = new DateTime(2023, 2, 1);
 
-                restockOrder = new RestockOrder(supplierList[3], productList[3], date4, "Delivered");
+                restockOrder = new RestockOrder(supplierList[3], productList[3], date, "Delivered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
 
-                DateTime date5 = new DateTime(2022, 4, 9);
+                date = new DateTime(2022, 4, 9);
 
-                restockOrder = new RestockOrder(supplierList[4], productList[4], date5, "Ordered");
+                restockOrder = new RestockOrder(supplierList[4], productList[4], date, "Ordered");
                 database.RestockOrder.Add(restockOrder);
                 database.SaveChanges();
             }
