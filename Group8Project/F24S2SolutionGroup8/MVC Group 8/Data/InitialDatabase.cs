@@ -119,7 +119,7 @@ namespace MVC_Group_8.Data
 
 
 
-
+            /*
 
             if (!database.Staff.Any())
             {
@@ -171,16 +171,49 @@ namespace MVC_Group_8.Data
                 database.Staff.Add(staff);
 
                 database.SaveChanges();
-            }
+            }*/
 
+
+            if (!database.Supplier.Any())
+            {
+                Supplier supplier = new Supplier("ABC Supplies", "contact@abcsupplies.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
+                /* Product product = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
+                 database.Product.Add(product);
+                 database.SaveChanges();
+
+                 Supplier supplier = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com", Product = product };
+                 database.Supplier.Add(supplier);
+
+
+                 //Product product = database.Product.First();
+                 //Supplier supplier = new Supplier(product, "Walmart", "walmart@gmail.com");
+                 //database.Supplier.Add(supplier1);
+                 //database.SaveChanges();
+
+                 product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
+                 database.Product.Add(product);
+                 database.SaveChanges();
+
+                 supplier = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com", Product = product };
+                 database.Supplier.Add(supplier);
+
+
+
+                 database.SaveChanges();*/
+            }
 
 
             if (!database.Product.Any())
             {
-                Product product = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
-                database.Product.Add(product);
+                Supplier supplier = database.Supplier.FirstOrDefault();
 
-                product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
+                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, supplier);
+                database.Product.Add(product);
+                database.SaveChanges();
+
+                /*product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
                 database.Product.Add(product);
 
                 product = new Product { Name = "Pen", Description = "Ballpoint pen", CurrentStock = 200, ReorderPoint = 40, MaxStock = 500 };
@@ -192,37 +225,9 @@ namespace MVC_Group_8.Data
                 product = new Product { Name = "Ruler", Description = "Plastic ruler 30 cm", CurrentStock = 50, ReorderPoint = 10, MaxStock = 100 };
                 database.Product.Add(product);
 
-                database.SaveChanges();
+                database.SaveChanges();*/
             }
 
-
-            if (!database.Supplier.Any())
-            {
-
-                Product product = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
-                database.Product.Add(product);
-                database.SaveChanges();
-
-                Supplier supplier = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com", Product = product };
-                database.Supplier.Add(supplier);
-
-
-                //Product product = database.Product.First();
-                //Supplier supplier = new Supplier(product, "Walmart", "walmart@gmail.com");
-                //database.Supplier.Add(supplier1);
-                //database.SaveChanges();
-
-                product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
-                database.Product.Add(product);
-                database.SaveChanges();
-
-                supplier = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com", Product = product };
-                database.Supplier.Add(supplier);
-
-
-
-                database.SaveChanges();
-            }
 
 
 

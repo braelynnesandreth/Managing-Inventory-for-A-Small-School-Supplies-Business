@@ -15,7 +15,7 @@ namespace LibraryGroup8
 
         public string ContactInfo { get; set; }
 
-        public Product Product {  get; set; }
+        public List<Product> Product {  get; set; }
 
         
         public List<RestockOrder> RestocksTheOrder { get; set; }
