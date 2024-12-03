@@ -131,43 +131,48 @@ namespace MVC_Group_8.Data
                 
                 //change this to look like that^??
                 staff = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
-                var result1 = userManager.CreateAsync(staff, "Password123!").Result;
-                if (result1.Succeeded)
-                {
+                //var result1 =
+                userManager.CreateAsync(staff, "Password123!").Wait();
+                //if (result1.Succeeded)
+                //{
                     userManager.AddToRoleAsync(staff, "Staff").Wait();
-                }
+                //}
                 database.Staff.Add(staff);
 
                 staff = new Staff { Firstname = "Jane", Lastname = "Smith", Email = "jane.smith@example.com", UserName = "jane.smith@example.com", ManagerId = 1 };
-                var result2 = userManager.CreateAsync(staff, "Password123!").Result;
-                if (result2.Succeeded)
-                {
+                //var result2 =
+                userManager.CreateAsync(staff, "Password123!").Wait();
+                //if (result2.Succeeded)
+                //{
                     userManager.AddToRoleAsync(staff, "Staff").Wait();
-                }
+                //}
                 database.Staff.Add(staff);
 
                 staff = new Staff { Firstname = "Mark", Lastname = "Johnson", Email = "mark.johnson@example.com", UserName = "mark.johnson@example.com", ManagerId = 2 };
-                var result3 = userManager.CreateAsync(staff, "Password123!").Result;
-                if (result3.Succeeded)
-                {
+                //var result3 = 
+                    userManager.CreateAsync(staff, "Password123!").Wait();
+                //if (result3.Succeeded)
+                //{
                     userManager.AddToRoleAsync(staff, "Staff").Wait();
-                }
+                //}
                 database.Staff.Add(staff);
 
                 staff = new Staff { Firstname = "Lucy", Lastname = "Williams", Email = "lucy.williams@example.com", UserName = "lucy.williams@example.com", ManagerId = 3 };
-                var result4 = userManager.CreateAsync(staff, "Password123!").Result;
-                if (result4.Succeeded)
-                {
+                //var result4 = 
+                    userManager.CreateAsync(staff, "Password123!").Wait();
+                //if (result4.Succeeded)
+                //{
                     userManager.AddToRoleAsync(staff, "Staff").Wait();
-                }
+                //}
                 database.Staff.Add(staff);
 
                 staff = new Staff { Firstname = "Mason", Lastname = "Brown", Email = "mason.brown@example.com", UserName = "mason.brown@example.com", ManagerId = 4 };
-                var result5 = userManager.CreateAsync(staff, "Password123!").Result;
-                if (result5.Succeeded)
-                {
+                //var result5 = 
+                    userManager.CreateAsync(staff, "Password123!").Wait();
+                //if (result5.Succeeded)
+                //{
                     userManager.AddToRoleAsync(staff, "Staff").Wait();
-                }
+                //}
                 database.Staff.Add(staff);
 
                 database.SaveChanges();
