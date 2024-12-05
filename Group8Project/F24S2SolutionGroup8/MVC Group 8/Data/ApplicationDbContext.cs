@@ -15,9 +15,10 @@ namespace MVC_Group_8.Data
         public DbSet<Staff> Staff { get; set; }
         public DbSet<Sale> Sale { get; set; }
         public DbSet<SaleDetail> SaleDetail { get; set; }
+
+        public DbSet<Supplier> Supplier { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<InventoryHistory> InventoryHistory { get; set; }
-        public DbSet<Supplier> Supplier { get; set; }
         public DbSet<RestockOrder> RestockOrder { get; set; }
 
 

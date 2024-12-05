@@ -18,9 +18,9 @@ namespace LibraryGroup8
         public Product Product { get; set; }
 
         public InventoryHistory() { }
-        public InventoryHistory(int inventoryHistoryId, DateTime date, int QuantityChange, string Reason)
+        public InventoryHistory( DateTime date, int QuantityChange, string Reason)
         {
-            InventoryHistoryId = inventoryHistoryId;
+  
             Date = date;
             this.QuantityChange = QuantityChange;
             this.Reason = Reason;

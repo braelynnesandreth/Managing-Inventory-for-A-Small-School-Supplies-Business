@@ -26,9 +26,9 @@ namespace LibraryGroup8
         { 
             SaleDetails = new List<SaleDetail>();
         }
-        public Sale(int saleId, DateTime saleDate, TimeSpan saleTime)
+        public Sale( DateTime saleDate, TimeSpan saleTime)
         {
-            SaleId = saleId;
+            
             SaleDate = saleDate;
             SaleTime = saleTime;
             SaleDetails = new List<SaleDetail>();
