@@ -90,27 +90,27 @@ namespace MVC_Group_8.Data
             {
                 var managersList = database.Manager.ToList();
                 
-                SmallBusinessOwner smallBusinessOwner = new SmallBusinessOwner { Firstname = "Jordan", Lastname = "Whitaker", Email = "jordanwhitaker@example.com", UserName = "jordanwhitaker@example.com", ManagerId = managersList[0].Id };
+                SmallBusinessOwner smallBusinessOwner = new SmallBusinessOwner ("Jordan", "Whitaker", "jordanwhitaker@example.com", "jordanwhitaker@example.com");
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Brooke", Lastname = "Mesinere", Email = "brookemesinere@example.com", UserName = "brookemesinere@example.com", ManagerId = managersList[1].Id };
+                smallBusinessOwner = new SmallBusinessOwner ("Brooke", "Mesinere", "brookemesinere@example.com", "brookemesinere@example.com");
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Emma", Lastname = "Johnson", Email = "emmajohnson@example.com", UserName = "emmajohnson@example.com", ManagerId = managersList[2].Id };
+                smallBusinessOwner = new SmallBusinessOwner ("Emma", "Johnson", "emmajohnson@example.com", "emmajohnson@example.com");
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Ethan", Lastname = "Martinez", Email = "ethanmartinez@example.com", UserName = "ethanmartinez@example.com", ManagerId = managersList[3].Id };
+                smallBusinessOwner = new SmallBusinessOwner ("Ethan", "Martinez", "ethanmartinez@example.com", "ethanmartinez@example.com");
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Sophia", Lastname = "White", Email = "sophiawhite@example.com", UserName = "sophiawhite@example.com", ManagerId = managersList[4].Id };
+                smallBusinessOwner = new SmallBusinessOwner ("Sophia", "White", "sophiawhite@example.com", "sophiawhite@example.com");
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 

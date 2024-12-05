@@ -8,15 +8,17 @@ namespace LibraryGroup8
 {
     public class SmallBusinessOwner : AppUser
     {
-        public string ManagerId { get; set; } 
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
         public Manager Manager { get; set; }  
 
         public SmallBusinessOwner() { }
 
-        public SmallBusinessOwner(string firstname, string lastname, string email, string password, string managerId)
+        public SmallBusinessOwner(string firstname, string lastname, string email, string password)
             : base(firstname, lastname, email, password)
         {
-            ManagerId = managerId;
         }
         // Added: ApproveRestock method signature and implementation
         public bool ApproveRestock(int restockOrderId)
