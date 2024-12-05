@@ -8,6 +8,7 @@ namespace LibraryGroup8
     public class Sale
     {
      
+        public int SaleID { get; set; }
         public DateTime SaleDate { get; set; }
         public TimeSpan SaleTime { get; set; }
         public string Staff { get; set; }

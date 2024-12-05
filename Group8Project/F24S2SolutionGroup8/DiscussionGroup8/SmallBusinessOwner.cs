@@ -8,10 +8,7 @@ namespace LibraryGroup8
 {
     public class SmallBusinessOwner : AppUser
     {
-        public string firstname  { get; set; }
-        public string lastname { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
+      
         public Manager Manager { get; set; }  
 
         public SmallBusinessOwner() { }

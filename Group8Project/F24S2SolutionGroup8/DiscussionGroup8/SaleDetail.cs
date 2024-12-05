@@ -24,10 +24,9 @@ namespace LibraryGroup8
 
         public SaleDetail() { }
 
-        public SaleDetail(Product product, Sale sale, int Quantity, decimal UnitPrice)
+        public SaleDetail(int Quantity, decimal UnitPrice)
         {
-            Product = product;
-            Sale = sale;
+           
             this.Quantity = Quantity;
             this.UnitPrice = UnitPrice;
 

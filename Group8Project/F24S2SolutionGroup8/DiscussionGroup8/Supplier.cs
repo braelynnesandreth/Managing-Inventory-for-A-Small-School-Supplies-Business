@@ -9,6 +9,7 @@ namespace LibraryGroup8
 {
     public class Supplier
     {
+        public int SupplierID { get; set; }
 
         public string Name { get; set; }
 

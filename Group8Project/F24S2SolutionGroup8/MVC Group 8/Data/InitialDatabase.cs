@@ -115,10 +115,6 @@ namespace MVC_Group_8.Data
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
             }
-
-
-
-
             
 
             if (!database.Staff.Any())
@@ -145,6 +141,98 @@ namespace MVC_Group_8.Data
                 userManager.AddToRoleAsync(staff, staffRole).Wait();
 
 
+
+                database.SaveChanges();
+            }
+
+
+            if (!database.Sale.Any())
+            {
+                Sale sale = new Sale { SaleDate = DateTime.Now, SaleTime = TimeSpan.FromHours(9), };
+                database.Sale.Add(sale);
+
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-1), SaleTime = TimeSpan.FromHours(10) };
+                database.Sale.Add(sale);
+
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-2), SaleTime = TimeSpan.FromHours(11) };
+                database.Sale.Add(sale);
+
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-3), SaleTime = TimeSpan.FromHours(12) };
+                database.Sale.Add(sale);
+
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-4), SaleTime = TimeSpan.FromHours(13) };
+                database.Sale.Add(sale);
+
+                database.SaveChanges();
+            }
+
+
+
+            if (!database.Product.Any())
+            {
+                Supplier supplier = database.Supplier.FirstOrDefault();
+
+                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, "ABC Supplies");
+                database.Product.Add(product);
+                database.SaveChanges();
+
+                product = new Product ("Notebook", "Spiral notebook with 100 pages", 150, 30, 300, "Walmart");
+                database.Product.Add(product);
+                database.SaveChanges();
+
+                product = new Product ("Pen","Ballpoint pen",200,40, 500, "Walmart");
+                database.Product.Add(product);
+                database.SaveChanges();
+
+                product = new Product ("Eraser", "Rubber eraser", 75, 15, 150, "XYZ Corp" );
+                database.Product.Add(product);
+                database.SaveChanges();
+
+                product = new Product ("Ruler", "Plastic ruler 30 cm", 50, 10, 100, "XYZ Corp");
+                database.Product.Add(product);
+                database.SaveChanges();
+
+                database.SaveChanges();
+            }
+
+
+            if (!database.SaleDetail.Any())
+            {
+                SaleDetail saleDetail = new SaleDetail ( 10,  1.50m );
+                database.SaleDetail.Add(saleDetail);
+
+                saleDetail = new SaleDetail ( 5, 2.00m );
+                database.SaleDetail.Add(saleDetail);
+
+                saleDetail = new SaleDetail ( 3, 1.25m );
+                database.SaleDetail.Add(saleDetail);
+
+                saleDetail = new SaleDetail (7, 0.75m );
+                database.SaleDetail.Add(saleDetail);
+
+                saleDetail = new SaleDetail ( 2, 1.10m );
+                database.SaleDetail.Add(saleDetail);
+
+                database.SaveChanges();
+            }
+
+
+            if (!database.InventoryHistory.Any())
+            {
+                InventoryHistory inventoryHistory = new InventoryHistory ( new DateTime(20204, 1, 1), 10, "Found a better price" );
+                database.InventoryHistory.Add(inventoryHistory);
+
+                inventoryHistory = new InventoryHistory ( new DateTime(2024, 4, 1), 20, "Do not need it anympore" );
+                database.InventoryHistory.Add(inventoryHistory);
+
+                inventoryHistory = new InventoryHistory ( new DateTime(2024, 5, 1), 30,  "Product broke in the delivery process" );
+                database.InventoryHistory.Add(inventoryHistory);
+
+                inventoryHistory = new InventoryHistory (new DateTime(2023, 6, 1), 40, "Customer wanted the product in a different color" );
+                database.InventoryHistory.Add(inventoryHistory);
+
+                inventoryHistory = new InventoryHistory ( new DateTime(2022, 4, 1), 50, "The size did not fix, too small" );
+                database.InventoryHistory.Add(inventoryHistory);
 
                 database.SaveChanges();
             }
@@ -177,97 +265,7 @@ namespace MVC_Group_8.Data
             }
 
 
-            if (!database.Product.Any())
-            {
-                Supplier supplier = database.Supplier.FirstOrDefault();
 
-                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, "ABC Supplies");
-                database.Product.Add(product);
-                database.SaveChanges();
-
-                product = new Product ("Notebook", "Spiral notebook with 100 pages", 150, 30, 300, "Walmart");
-                database.Product.Add(product);
-                database.SaveChanges();
-
-                product = new Product ("Pen","Ballpoint pen",200,40, 500, "Walmart");
-                database.Product.Add(product);
-                database.SaveChanges();
-
-                product = new Product ("Eraser", "Rubber eraser", 75, 15, 150, "XYZ Corp" );
-                database.Product.Add(product);
-                database.SaveChanges();
-
-                product = new Product ("Ruler", "Plastic ruler 30 cm", 50, 10, 100, "XYZ Corp");
-                database.Product.Add(product);
-                database.SaveChanges();
-
-                database.SaveChanges();
-            }
-
-
-
-
-            if (!database.Sale.Any())
-            {
-                Sale sale = new Sale { SaleDate = DateTime.Now, SaleTime = TimeSpan.FromHours(9),  };
-                database.Sale.Add(sale);
-
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-1), SaleTime = TimeSpan.FromHours(10)  };
-                database.Sale.Add(sale);
-
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-2), SaleTime = TimeSpan.FromHours(11)  };
-                database.Sale.Add(sale);
-
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-3), SaleTime = TimeSpan.FromHours(12)  };
-                database.Sale.Add(sale);
-
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-4), SaleTime = TimeSpan.FromHours(13) };
-                database.Sale.Add(sale);
-
-                database.SaveChanges();
-            }
-
-
-            if (!database.SaleDetail.Any())
-            {
-                SaleDetail saleDetail = new SaleDetail { SaleId = 1, ProductId = 1, Quantity = 10, UnitPrice = 1.50m };
-                database.SaleDetail.Add(saleDetail);
-
-                saleDetail = new SaleDetail { SaleId = 1, ProductId = 2, Quantity = 5, UnitPrice = 2.00m };
-                database.SaleDetail.Add(saleDetail);
-
-                saleDetail = new SaleDetail { SaleId = 2, ProductId = 3, Quantity = 3, UnitPrice = 1.25m };
-                database.SaleDetail.Add(saleDetail);
-
-                saleDetail = new SaleDetail { SaleId = 3, ProductId = 4, Quantity = 7, UnitPrice = 0.75m };
-                database.SaleDetail.Add(saleDetail);
-
-                saleDetail = new SaleDetail { SaleId = 4, ProductId = 5, Quantity = 2, UnitPrice = 1.10m };
-                database.SaleDetail.Add(saleDetail);
-
-                database.SaveChanges();
-            }
-
-
-            if (!database.InventoryHistory.Any())
-            {
-                InventoryHistory inventoryHistory = new InventoryHistory { InventoryHistoryId = 1, Date = new DateTime(20204, 1, 1), QuantityChange = 10, Reason = "Found a better price" };
-                database.InventoryHistory.Add(inventoryHistory);
-
-                inventoryHistory = new InventoryHistory { InventoryHistoryId = 2, Date = new DateTime(2024, 4, 1), QuantityChange = 20, Reason = "Do not need it anympore" };
-                database.InventoryHistory.Add(inventoryHistory);
-
-                inventoryHistory = new InventoryHistory { InventoryHistoryId = 3, Date = new DateTime(2024, 5, 1), QuantityChange = 30, Reason = "Product broke in the delivery process" };
-                database.InventoryHistory.Add(inventoryHistory);
-
-                inventoryHistory = new InventoryHistory { InventoryHistoryId = 4, Date = new DateTime(2023, 6, 1), QuantityChange = 40, Reason = "Customer wanted the product in a different color" };
-                database.InventoryHistory.Add(inventoryHistory);
-
-                inventoryHistory = new InventoryHistory { InventoryHistoryId = 5, Date = new DateTime(2022, 4, 1), QuantityChange = 50, Reason = "The size did not fix, too small" };
-                database.InventoryHistory.Add(inventoryHistory);
-
-                database.SaveChanges();
-            }
 
             if (!database.RestockOrder.Any())
             {
