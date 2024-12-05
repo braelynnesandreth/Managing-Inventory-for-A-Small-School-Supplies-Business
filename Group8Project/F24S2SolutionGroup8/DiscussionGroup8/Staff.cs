@@ -7,7 +7,12 @@ namespace LibraryGroup8
 {
     public class Staff : AppUser
     {
-        public int ManagerId { get; set; }  
+        public string firstname {  get; set; }
+        public string lastname { get; set; }
+        public string email { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+
         public ICollection<Sale> Sales { get; set; }  
         public Manager Manager { get; set; }
 
@@ -26,14 +31,7 @@ namespace LibraryGroup8
             Sales = new List<Sale>();  
         }
 
-        public Staff(string firstname, string lastname, string email, string password, int managerId)
-            : base(firstname, lastname, email, password)
-        {
-            ManagerId = ManagerId;
-            Sales = new List<Sale>();  
-        }
-
-        public Staff(string firstname, string lastname, string email, string password) :
+        public Staff(string firstname, string lastname, string email, string username, string password) :
             base(firstname, lastname, email, password)
         {
             Sales = new List<Sale>();

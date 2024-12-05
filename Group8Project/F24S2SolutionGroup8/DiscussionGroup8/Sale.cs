@@ -7,13 +7,10 @@ namespace LibraryGroup8
 {
     public class Sale
     {
-        public int SaleId { get; set; }
+     
         public DateTime SaleDate { get; set; }
         public TimeSpan SaleTime { get; set; }
-        
-        
-        public int StaffId { get; set; }
-        public Staff Staff { get; set; }
+        public string Staff { get; set; }
 
         public ICollection<SaleDetail> SaleDetails { get; set; }
 
@@ -26,12 +23,13 @@ namespace LibraryGroup8
         { 
             SaleDetails = new List<SaleDetail>();
         }
-        public Sale( DateTime saleDate, TimeSpan saleTime)
+        public Sale( DateTime saleDate, TimeSpan saleTime, string staff)
         {
             
             SaleDate = saleDate;
             SaleTime = saleTime;
             SaleDetails = new List<SaleDetail>();
+            Staff = staff;
         }
 
         

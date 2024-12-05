@@ -90,27 +90,27 @@ namespace MVC_Group_8.Data
             {
                 var managersList = database.Manager.ToList();
                 
-                SmallBusinessOwner smallBusinessOwner = new SmallBusinessOwner { Firstname = "Jordan", Lastname = "Whitaker", Email = "jordanwhitaker@example.com", UserName = "jordanwhitaker@example.com", ManagerId = managersList[0].Id };
+                SmallBusinessOwner smallBusinessOwner = new SmallBusinessOwner ("Jordan", "Whitaker", "jordanwhitaker@example.com", "jordanwhitaker@example.com" );
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Brooke", Lastname = "Mesinere", Email = "brookemesinere@example.com", UserName = "brookemesinere@example.com", ManagerId = managersList[1].Id };
+                smallBusinessOwner = new SmallBusinessOwner ( "Brooke", "Mesinere", "brookemesinere@example.com","brookemesinere@example.com");
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Emma", Lastname = "Johnson", Email = "emmajohnson@example.com", UserName = "emmajohnson@example.com", ManagerId = managersList[2].Id };
+                smallBusinessOwner = new SmallBusinessOwner ( "Emma", "Johnson",  "emmajohnson@example.com", "emmajohnson@example.com" );
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Ethan", Lastname = "Martinez", Email = "ethanmartinez@example.com", UserName = "ethanmartinez@example.com", ManagerId = managersList[3].Id };
+                smallBusinessOwner = new SmallBusinessOwner ("Ethan", "Martinez", "ethanmartinez@example.com","ethanmartinez@example.com" );
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
 
-                smallBusinessOwner = new SmallBusinessOwner { Firstname = "Sophia", Lastname = "White", Email = "sophiawhite@example.com", UserName = "sophiawhite@example.com", ManagerId = managersList[4].Id };
+                smallBusinessOwner = new SmallBusinessOwner ("Sophia", "White", "sophiawhite@example.com", "sophiawhite@example.com" );
                 userManager.CreateAsync(smallBusinessOwner).Wait();
                 userManager.AddToRoleAsync(smallBusinessOwner, smallBusinessOwnerRole).Wait();
                 
@@ -119,94 +119,61 @@ namespace MVC_Group_8.Data
 
 
 
-            /*
+            
 
             if (!database.Staff.Any())
             {
-                //this is how it should be 
-               Staff staff = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
+                
+               Staff staff = new Staff ("John", "Doe", "john.doe@example.com", "john.doe@example.com", "Password123!");
                 userManager.CreateAsync(staff).Wait();
                 userManager.AddToRoleAsync(staff, staffRole).Wait();
 
-                
-                //change this to look like that^??
-                staff = new Staff { Firstname = "John", Lastname = "Doe", Email = "john.doe@example.com", UserName = "john.doe@example.com", ManagerId = 1 };
-                //var result1 =
-                userManager.CreateAsync(staff, "Password123!").Wait();
-                //if (result1.Succeeded)
-                //{
-                    userManager.AddToRoleAsync(staff, "Staff").Wait();
-                //}
-                database.Staff.Add(staff);
+                staff = new Staff ( "Jane",  "Smith", "jane.smith@example.com", "jane.smith@example.com", "Password123!" );
+                userManager.CreateAsync(staff).Wait();
+                userManager.AddToRoleAsync(staff, staffRole).Wait();
 
-                staff = new Staff { Firstname = "Jane", Lastname = "Smith", Email = "jane.smith@example.com", UserName = "jane.smith@example.com", ManagerId = 1 };
-                //var result2 =
-                userManager.CreateAsync(staff, "Password123!").Wait();
-                //if (result2.Succeeded)
-                //{
-                    userManager.AddToRoleAsync(staff, "Staff").Wait();
-                //}
-                database.Staff.Add(staff);
+                staff = new Staff("Mark", "Johnson", "mark.smith@example.com", "mark.smith@example.com", "Password123!");
+                userManager.CreateAsync(staff).Wait();
+                userManager.AddToRoleAsync(staff, staffRole).Wait();
 
-                staff = new Staff { Firstname = "Mark", Lastname = "Johnson", Email = "mark.johnson@example.com", UserName = "mark.johnson@example.com", ManagerId = 2 };
-                //var result3 = 
-                    userManager.CreateAsync(staff, "Password123!").Wait();
-                //if (result3.Succeeded)
-                //{
-                    userManager.AddToRoleAsync(staff, "Staff").Wait();
-                //}
-                database.Staff.Add(staff);
+                staff = new Staff("Lucy", "Williams", "lucy.smith@example.com", "lucy.smith@example.com", "Password123!");
+                userManager.CreateAsync(staff).Wait();
+                userManager.AddToRoleAsync(staff, staffRole).Wait();
 
-                staff = new Staff { Firstname = "Lucy", Lastname = "Williams", Email = "lucy.williams@example.com", UserName = "lucy.williams@example.com", ManagerId = 3 };
-                //var result4 = 
-                    userManager.CreateAsync(staff, "Password123!").Wait();
-                //if (result4.Succeeded)
-                //{
-                    userManager.AddToRoleAsync(staff, "Staff").Wait();
-                //}
-                database.Staff.Add(staff);
+                staff = new Staff("Mason", "Brown", "mason.smith@example.com", "mason.smith@example.com", "Password123!");
+                userManager.CreateAsync(staff).Wait();
+                userManager.AddToRoleAsync(staff, staffRole).Wait();
 
-                staff = new Staff { Firstname = "Mason", Lastname = "Brown", Email = "mason.brown@example.com", UserName = "mason.brown@example.com", ManagerId = 4 };
-                //var result5 = 
-                    userManager.CreateAsync(staff, "Password123!").Wait();
-                //if (result5.Succeeded)
-                //{
-                    userManager.AddToRoleAsync(staff, "Staff").Wait();
-                //}
-                database.Staff.Add(staff);
+
 
                 database.SaveChanges();
-            }*/
+            }
 
 
             if (!database.Supplier.Any())
             {
-                Supplier supplier = new Supplier("ABC Supplies", "contact@abcsupplies.com");
+                Supplier supplier = new Supplier("Pencil", "ABC Supplies", "contact@abcsupplies.com");
                 database.Supplier.Add(supplier);
                 database.SaveChanges();
-                /* Product product = new Product { Name = "Pencil", Description = "Standard wooden pencil", CurrentStock = 100, ReorderPoint = 20, MaxStock = 200 };
-                 database.Product.Add(product);
-                 database.SaveChanges();
 
-                 Supplier supplier = new Supplier { Name = "ABC Supplies", ContactInfo = "contact@abcsupplies.com", Product = product };
-                 database.Supplier.Add(supplier);
+                supplier = new Supplier("Eraser", "XYZ Corp", "sales@xyzcorp.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
 
+                supplier = new Supplier("Notebook", "Walmart", "walmart@gmail.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
 
-                 //Product product = database.Product.First();
-                 //Supplier supplier = new Supplier(product, "Walmart", "walmart@gmail.com");
-                 //database.Supplier.Add(supplier1);
-                 //database.SaveChanges();
-
-                 product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
-                 database.Product.Add(product);
-                 database.SaveChanges();
-
-                 supplier = new Supplier { Name = "XYZ Corp", ContactInfo = "sales@xyzcorp.com", Product = product };
-                 database.Supplier.Add(supplier);
+                supplier = new Supplier("Pen", "Walmart", "walmart@gmail.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
 
 
+                supplier = new Supplier("Ruler", "XYZ Corp", "sales@xyzcorp.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
 
-                 database.SaveChanges();*/
+                database.SaveChanges();
             }
 
 
@@ -214,23 +181,27 @@ namespace MVC_Group_8.Data
             {
                 Supplier supplier = database.Supplier.FirstOrDefault();
 
-                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, supplier);
+                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, "ABC Supplies");
                 database.Product.Add(product);
                 database.SaveChanges();
 
-                /*product = new Product { Name = "Notebook", Description = "Spiral notebook with 100 pages", CurrentStock = 150, ReorderPoint = 30, MaxStock = 300 };
+                product = new Product ("Notebook", "Spiral notebook with 100 pages", 150, 30, 300, "Walmart");
                 database.Product.Add(product);
+                database.SaveChanges();
 
-                product = new Product { Name = "Pen", Description = "Ballpoint pen", CurrentStock = 200, ReorderPoint = 40, MaxStock = 500 };
+                product = new Product ("Pen","Ballpoint pen",200,40, 500, "Walmart");
                 database.Product.Add(product);
+                database.SaveChanges();
 
-                product = new Product { Name = "Eraser", Description = "Rubber eraser", CurrentStock = 75, ReorderPoint = 15, MaxStock = 150 };
+                product = new Product ("Eraser", "Rubber eraser", 75, 15, 150, "XYZ Corp" );
                 database.Product.Add(product);
+                database.SaveChanges();
 
-                product = new Product { Name = "Ruler", Description = "Plastic ruler 30 cm", CurrentStock = 50, ReorderPoint = 10, MaxStock = 100 };
+                product = new Product ("Ruler", "Plastic ruler 30 cm", 50, 10, 100, "XYZ Corp");
                 database.Product.Add(product);
+                database.SaveChanges();
 
-                database.SaveChanges();*/
+                database.SaveChanges();
             }
 
 
@@ -238,19 +209,19 @@ namespace MVC_Group_8.Data
 
             if (!database.Sale.Any())
             {
-                Sale sale = new Sale { SaleDate = DateTime.Now, SaleTime = TimeSpan.FromHours(9), StaffId = 1 };
+                Sale sale = new Sale { SaleDate = DateTime.Now, SaleTime = TimeSpan.FromHours(9),  };
                 database.Sale.Add(sale);
 
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-1), SaleTime = TimeSpan.FromHours(10), StaffId = 2 };
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-1), SaleTime = TimeSpan.FromHours(10)  };
                 database.Sale.Add(sale);
 
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-2), SaleTime = TimeSpan.FromHours(11), StaffId = 3 };
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-2), SaleTime = TimeSpan.FromHours(11)  };
                 database.Sale.Add(sale);
 
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-3), SaleTime = TimeSpan.FromHours(12), StaffId = 4 };
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-3), SaleTime = TimeSpan.FromHours(12)  };
                 database.Sale.Add(sale);
 
-                sale = new Sale { SaleDate = DateTime.Now.AddDays(-4), SaleTime = TimeSpan.FromHours(13), StaffId = 5 };
+                sale = new Sale { SaleDate = DateTime.Now.AddDays(-4), SaleTime = TimeSpan.FromHours(13) };
                 database.Sale.Add(sale);
 
                 database.SaveChanges();

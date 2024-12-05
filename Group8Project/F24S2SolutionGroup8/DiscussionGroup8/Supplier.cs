@@ -9,7 +9,6 @@ namespace LibraryGroup8
 {
     public class Supplier
     {
-        public int SupplierId { get; set; }
 
         public string Name { get; set; }
 
@@ -29,9 +28,9 @@ namespace LibraryGroup8
            
         }
 
-        public Supplier(/*Product product,*/ string name, string contactInfo)
+        public Supplier(string product, string name, string contactInfo)
         {
-            //Product = product;
+            Product = new List<Product>();
             Name = name;
             ContactInfo = contactInfo;
             RestocksTheOrder = new List<RestockOrder>();
