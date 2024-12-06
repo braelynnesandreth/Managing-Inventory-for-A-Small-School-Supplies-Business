@@ -19,7 +19,7 @@ namespace LibraryGroup8
 
         public decimal calculateSubtotal()
         {
-            throw new System.NotImplementedException();
+            return Quantity * UnitPrice;
         }
 
         public SaleDetail() { }
