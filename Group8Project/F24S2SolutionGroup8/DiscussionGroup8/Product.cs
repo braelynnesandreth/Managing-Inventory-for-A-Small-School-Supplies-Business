@@ -14,7 +14,7 @@ namespace LibraryGroup8
         public int ReorderPoint { get; set; }
         public int MaxStock { get; set; }
         public string Supplier { get; set; }
-        public List<InventoryHistory> InventoryHistory { get; set; }
+        public ICollection<InventoryHistory> InventoryHistory { get; set; }
 
         public ICollection<SaleDetail> SaleDetail { get; set; }
         public ICollection<RestockOrder> RestockOrder {get; set;}
@@ -48,6 +48,27 @@ namespace LibraryGroup8
             SaleDetail = new List<SaleDetail>();
             RestockOrder= new List<RestockOrder>();
             InventoryHistory = new List<InventoryHistory>();
+        }
+        // Add a sale and adjust stock
+        public void AddSale(int quantity)
+        {
+            if (quantity > CurrentStock)
+            {
+                throw new InvalidOperationException("Insufficient stock to complete the sale.");
+            }
+
+            CurrentStock -= quantity;
+        }
+
+        // Restock inventory
+        public void Restock(int quantity)
+        {
+            if (CurrentStock + quantity > MaxStock)
+            {
+                throw new InvalidOperationException("Cannot exceed maximum stock limit.");
+            }
+
+            CurrentStock += quantity;
         }
     }
 }
