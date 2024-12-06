@@ -120,7 +120,8 @@ namespace MVC_Group_8.Data
             if (!database.Staff.Any())
             {
                 
-               Staff staff = new Staff ("John", "Doe", "john.doe@example.com", "john.doe@example.com", "Password123!");
+
+                Staff staff = new Staff ("John", "Doe", "john.doe@example.com", "john.doe@example.com", "Password123!");
                 userManager.CreateAsync(staff).Wait();
                 userManager.AddToRoleAsync(staff, staffRole).Wait();
 

@@ -7,34 +7,32 @@ namespace LibraryGroup8
 {
     public class Staff : AppUser
     {
-        public string firstname {  get; set; }
-        public string lastname { get; set; }
-        public string email { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-
-        public ICollection<Sale> Sales { get; set; }  
+        public ICollection<Sale> Sales { get; set; }
         public Manager Manager { get; set; }
 
-        public bool processSale()
+        
+        public Staff() : base() 
         {
-            throw new System.NotImplementedException();
+            Sales = new List<Sale>(); 
         }
 
-        public InventoryHistory updateInventory()
+       
+        public Staff(string firstName, string lastName, string email, string userName, string password)
+            : base(firstName, lastName, email, password)
         {
-            throw new System.NotImplementedException();
+            Sales = new List<Sale>(); 
+            this.UserName = userName; 
         }
 
-        public Staff()
+        
+        public bool ProcessSale(Sale sale)
         {
-            Sales = new List<Sale>();  
-        }
-
-        public Staff(string firstname, string lastname, string email, string username, string password) :
-            base(firstname, lastname, email, password)
-        {
-            Sales = new List<Sale>();
+            if (sale != null)
+            {
+                Sales.Add(sale); 
+                return true;
+            }
+            return false;
         }
     }
 }
