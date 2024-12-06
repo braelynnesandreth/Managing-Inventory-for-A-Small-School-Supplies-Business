@@ -26,6 +26,7 @@ namespace LibraryGroup8
         public Supplier()
         {
             RestocksTheOrder = new List<RestockOrder>();
+            
            
         }
 
