@@ -1,38 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
+using System.Linq;
+using System.Text;
 
 namespace LibraryGroup8
 {
     public class Sale
     {
-     
         public int SaleID { get; set; }
         public DateTime SaleDate { get; set; }
         public TimeSpan SaleTime { get; set; }
-        public string Staff { get; set; }
+
+       
+        public int StaffId { get; set; }
+        public Staff Staff { get; set; } 
 
         public ICollection<SaleDetail> SaleDetails { get; set; }
 
-        public decimal calculateTotal()
+        public Sale()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Sale() 
-        { 
             SaleDetails = new List<SaleDetail>();
         }
-        public Sale( DateTime saleDate, TimeSpan saleTime, string staff)
+
+        public Sale(DateTime saleDate, TimeSpan saleTime, int staffId)
         {
-            
             SaleDate = saleDate;
             SaleTime = saleTime;
+            StaffId = staffId;
             SaleDetails = new List<SaleDetail>();
-            Staff = staff;
         }
 
-        
+        // Method to calculate the total amount for the sale
+        public decimal CalculateTotal()
+        {
+            return SaleDetails.Sum(sd => sd.Quantity * sd.UnitPrice);
+        }
+
+        // Override ToString for better display
+        public override string ToString()
+        {
+            return $"SaleID: {SaleID}, Date: {SaleDate.ToShortDateString()}, Time: {SaleTime}, Total Amount: {CalculateTotal():C}";
+        }
     }
 }
