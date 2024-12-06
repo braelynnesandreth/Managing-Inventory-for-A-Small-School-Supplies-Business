@@ -34,5 +34,13 @@ namespace LibraryGroup8
             }
             return false;
         }
+        public void UpdateInventoryAfterRestock(int productId, int quantityReceived, List<Product> products)
+        {
+            var product = products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null)
+            {
+                product.CurrentStock += quantityReceived;
+            }
+        }
     }
 }
