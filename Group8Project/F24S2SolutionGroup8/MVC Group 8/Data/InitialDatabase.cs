@@ -168,6 +168,31 @@ namespace MVC_Group_8.Data
             }
 
 
+            if (!database.Supplier.Any())
+            {
+                Supplier supplier = new Supplier("Pencil", "ABC Supplies", "contact@abcsupplies.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
+
+                supplier = new Supplier("Eraser", "XYZ Corp", "sales@xyzcorp.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
+
+                supplier = new Supplier("Notebook", "Walmart", "walmart@gmail.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
+
+                supplier = new Supplier("Pen", "Walmart", "walmart@gmail.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
+
+
+                supplier = new Supplier("Ruler", "XYZ Corp", "sales@xyzcorp.com");
+                database.Supplier.Add(supplier);
+                database.SaveChanges();
+
+                database.SaveChanges();
+            }
 
             if (!database.Product.Any())
             {
@@ -199,19 +224,21 @@ namespace MVC_Group_8.Data
 
             if (!database.SaleDetail.Any())
             {
-                SaleDetail saleDetail = new SaleDetail ( 10,  1.50m );
+                Sale sale = new Sale();
+                Product product = new Product();
+                SaleDetail saleDetail = new SaleDetail (sale, product, 10,  1.50m );
                 database.SaleDetail.Add(saleDetail);
 
-                saleDetail = new SaleDetail ( 5, 2.00m );
+                saleDetail = new SaleDetail (sale, product, 5, 2.00m);
                 database.SaleDetail.Add(saleDetail);
 
-                saleDetail = new SaleDetail ( 3, 1.25m );
+                saleDetail = new SaleDetail (sale, product, 3, 1.25m);
                 database.SaleDetail.Add(saleDetail);
 
-                saleDetail = new SaleDetail (7, 0.75m );
+                saleDetail = new SaleDetail (sale, product, 7, 0.75m);
                 database.SaleDetail.Add(saleDetail);
 
-                saleDetail = new SaleDetail ( 2, 1.10m );
+                saleDetail = new SaleDetail (sale, product, 2, 1.10m);
                 database.SaleDetail.Add(saleDetail);
 
                 database.SaveChanges();
@@ -220,50 +247,27 @@ namespace MVC_Group_8.Data
 
             if (!database.InventoryHistory.Any())
             {
-                InventoryHistory inventoryHistory = new InventoryHistory ( new DateTime(20204, 1, 1), 10, "Found a better price" );
+
+                Product product = new Product();
+                InventoryHistory inventoryHistory = new InventoryHistory ( new DateTime(20204, 1, 1), 10, "Found a better price", product );
                 database.InventoryHistory.Add(inventoryHistory);
 
-                inventoryHistory = new InventoryHistory ( new DateTime(2024, 4, 1), 20, "Do not need it anympore" );
+                inventoryHistory = new InventoryHistory ( new DateTime(2024, 4, 1), 20, "Do not need it anympore", product );
                 database.InventoryHistory.Add(inventoryHistory);
 
-                inventoryHistory = new InventoryHistory ( new DateTime(2024, 5, 1), 30,  "Product broke in the delivery process" );
+                inventoryHistory = new InventoryHistory ( new DateTime(2024, 5, 1), 30,  "Product broke in the delivery process", product );
                 database.InventoryHistory.Add(inventoryHistory);
 
-                inventoryHistory = new InventoryHistory (new DateTime(2023, 6, 1), 40, "Customer wanted the product in a different color" );
+                inventoryHistory = new InventoryHistory (new DateTime(2023, 6, 1), 40, "Customer wanted the product in a different color", product );
                 database.InventoryHistory.Add(inventoryHistory);
 
-                inventoryHistory = new InventoryHistory ( new DateTime(2022, 4, 1), 50, "The size did not fix, too small" );
+                inventoryHistory = new InventoryHistory ( new DateTime(2022, 4, 1), 50, "The size did not fix, too small", product );
                 database.InventoryHistory.Add(inventoryHistory);
 
                 database.SaveChanges();
             }
 
 
-            if (!database.Supplier.Any())
-            {
-                Supplier supplier = new Supplier("Pencil", "ABC Supplies", "contact@abcsupplies.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
-
-                supplier = new Supplier("Eraser", "XYZ Corp", "sales@xyzcorp.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
-
-                supplier = new Supplier("Notebook", "Walmart", "walmart@gmail.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
-
-                supplier = new Supplier("Pen", "Walmart", "walmart@gmail.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
-
-
-                supplier = new Supplier("Ruler", "XYZ Corp", "sales@xyzcorp.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
-
-                database.SaveChanges();
-            }
 
 
 

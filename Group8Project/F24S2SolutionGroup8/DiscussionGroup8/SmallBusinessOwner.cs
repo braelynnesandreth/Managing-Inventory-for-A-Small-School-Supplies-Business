@@ -49,7 +49,7 @@ namespace LibraryGroup8
             var topProducts = Sales
                 .Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate) 
                 .SelectMany(s => s.SaleDetails) 
-                .GroupBy(sd => sd.ProductId) 
+                .GroupBy(sd => sd.Product) 
                 .Select(group => new
                 {
                     ProductId = group.Key,
