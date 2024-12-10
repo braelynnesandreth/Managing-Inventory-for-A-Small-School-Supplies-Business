@@ -25,8 +25,11 @@ namespace LibraryGroup8
             Products = new List<Product>();
             InventoryHistories = new List<InventoryHistory>();
         }
-        public IEnumerable<InventoryHistory> ReviewInventoryHistory(int productId) => InventoryHistories.Where(h => h.ProductId == productId).ToList();
 
+
+
+        public IEnumerable<InventoryHistory> ReviewInventoryHistory(int productId) =>
+        InventoryHistories.Where(h => h.Product.ProductId == productId).ToList();
 
         public IEnumerable<RestockOrder> AnalyzeRestockingTrends(int productId, DateTime startDate, DateTime endDate)
         {
@@ -34,10 +37,7 @@ namespace LibraryGroup8
                 .FirstOrDefault(p => p.ProductId == productId)?.RestockOrder
                 .Where(r => r.Date >= startDate && r.Date <= endDate)
                 .ToList();
-        }
-    }
 
-    public class RestockingTrend
-    {
+        }
     }
 }

@@ -52,7 +52,7 @@ namespace LibraryGroup8
                 .GroupBy(sd => sd.Product) 
                 .Select(group => new
                 {
-                    ProductId = group.Key,
+                    ProductId = group.Key.ProductId,
                     TotalSold = group.Sum(sd => sd.Quantity) 
                 })
                 .OrderByDescending(p => p.TotalSold) 
