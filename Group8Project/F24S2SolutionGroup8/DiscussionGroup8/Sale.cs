@@ -11,11 +11,12 @@ namespace LibraryGroup8
         public DateTime SaleDate { get; set; }
         public TimeSpan SaleTime { get; set; }
 
-       
+
         public int StaffId { get; set; }
-        public Staff Staff { get; set; } 
+        public Staff Staff { get; set; }
 
         public ICollection<SaleDetail> SaleDetails { get; set; }
+       
 
         public Sale()
         {
@@ -36,10 +37,7 @@ namespace LibraryGroup8
             return SaleDetails.Sum(sd => sd.Quantity * sd.UnitPrice);
         }
 
-        // Override ToString for better display
-        public override string ToString()
-        {
-            return $"SaleID: {SaleID}, Date: {SaleDate.ToShortDateString()}, Time: {SaleTime}, Total Amount: {CalculateTotal():C}";
-        }
     }
 }
+
+

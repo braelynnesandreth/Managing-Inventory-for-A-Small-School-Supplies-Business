@@ -28,42 +28,41 @@ namespace LibraryGroup8
         // Approve Restock Order
         public bool ApproveRestock(int restockOrderId)
         {
-            
+
             var restockOrder = RestockOrders.FirstOrDefault(r => r.RestockOrderId == restockOrderId);
 
-           
+
             if (restockOrder == null || restockOrder.Status == "Approved")
             {
-                return false; // Can't approve an invalid or already approved order
+                return false;
             }
 
-            // Update the status to "Approved"
+
             restockOrder.Status = "Approved";
-            return true; 
+            return true;
         }
 
-        
+
         public List<Product> ViewSalesInsights(DateTime startDate, DateTime endDate)
         {
-           
+
             var topProducts = Sales
-                .Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate) 
-                .SelectMany(s => s.SaleDetails) 
-                .GroupBy(sd => sd.Product) 
+                .Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate)
+                .SelectMany(s => s.SaleDetails)
+                .GroupBy(sd => sd.Product)
                 .Select(group => new
                 {
                     ProductId = group.Key.ProductId,
-                    TotalSold = group.Sum(sd => sd.Quantity) 
+                    TotalSold = group.Sum(sd => sd.Quantity)
                 })
-                .OrderByDescending(p => p.TotalSold) 
-                .Take(3) // Get the top 3 products
+                .OrderByDescending(p => p.TotalSold)
+                .Take(3)
                 .Join(Products, sales => sales.ProductId, product => product.ProductId, (sales, product) => product) // Join to get the actual product data
                 .ToList();
 
             return topProducts;
         }
 
-        // Notify when product inventory is low
         public void NotifyLowInventory(int productId)
         {
             // Find the product by its ID
@@ -72,16 +71,17 @@ namespace LibraryGroup8
             // Check if the product exists and its current stock is less than or equal to the reorder point
             if (product != null && product.CurrentStock <= product.ReorderPoint)
             {
-                
-                Console.WriteLine($"Notification: Product '{product.Name}' is low in stock.");
+
+                SendLowStockNotification(product);
             }
         }
 
-        
-        public void ManageBusiness()
+
+        private void SendLowStockNotification(Product product)
         {
-            
-            throw new NotImplementedException();
+            // Here, you would have code to actually send a notification (e.g., email or alert).
+            Console.WriteLine($"Notification: Product '{product.Name}' is low in stock.");
         }
     }
 }
+

@@ -14,6 +14,8 @@ namespace LibraryGroup8
         public int ReorderPoint { get; set; }
         public int MaxStock { get; set; }
         public string Supplier { get; set; }
+        public int SupplierId { get; set; }
+
         public ICollection<InventoryHistory> InventoryHistory { get; set; }
 
         public ICollection<SaleDetail> SaleDetail { get; set; }
@@ -58,6 +60,8 @@ namespace LibraryGroup8
             }
 
             CurrentStock -= quantity;
+            InventoryHistory.Add(new InventoryHistory(DateTime.Now, -quantity, "Sale", this)); 
+        
         }
 
         // Restock inventory
@@ -69,6 +73,9 @@ namespace LibraryGroup8
             }
 
             CurrentStock += quantity;
+            InventoryHistory.Add(new InventoryHistory(DateTime.Now, quantity, "Restock", this)); // Record restock history
         }
+    
+
     }
 }

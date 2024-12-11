@@ -14,6 +14,8 @@ namespace LibraryGroup8
         public string Reason { get; set; }
         //public int ProductId { get; set; }
         public Product Product { get; set; }
+        public int ProductId { get; set; }
+
 
         // Constructor
         public InventoryHistory() { }
@@ -27,12 +29,10 @@ namespace LibraryGroup8
             QuantityChange = quantityChange;
             Reason = reason;
             Product = product;
+            
+
+
         }
 
-        // Override ToString for better display
-       // public override string ToString()
-        //{
-        //    return $"InventoryHistoryId: {InventoryHistoryId}, Date: {Date.ToShortDateString()}, QuantityChange: {QuantityChange}, Reason: {Reason}, Product product;
-       // }
     }
 }
