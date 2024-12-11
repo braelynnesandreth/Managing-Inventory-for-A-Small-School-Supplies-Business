@@ -11,13 +11,14 @@ namespace MVC_Group_8.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            // Adding Discriminator, Firstname, Lastname, and Manager/Staff-related columns to AspNetUsers
             migrationBuilder.AddColumn<string>(
                 name: "Discriminator",
                 table: "AspNetUsers",
                 type: "nvarchar(21)",
                 maxLength: 21,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: "Staff");
 
             migrationBuilder.AddColumn<string>(
                 name: "Firstname",
@@ -49,6 +50,7 @@ namespace MVC_Group_8.Data.Migrations
                 type: "int",
                 nullable: true);
 
+            // Creating Sale table
             migrationBuilder.CreateTable(
                 name: "Sale",
                 columns: table => new
@@ -70,6 +72,7 @@ namespace MVC_Group_8.Data.Migrations
                         principalColumn: "Id");
                 });
 
+            // Creating Supplier table
             migrationBuilder.CreateTable(
                 name: "Supplier",
                 columns: table => new
@@ -84,6 +87,7 @@ namespace MVC_Group_8.Data.Migrations
                     table.PrimaryKey("PK_Supplier", x => x.SupplierId);
                 });
 
+            // Creating Product table
             migrationBuilder.CreateTable(
                 name: "Product",
                 columns: table => new
@@ -108,6 +112,7 @@ namespace MVC_Group_8.Data.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
+            // Creating InventoryHistory table
             migrationBuilder.CreateTable(
                 name: "InventoryHistory",
                 columns: table => new
@@ -130,6 +135,7 @@ namespace MVC_Group_8.Data.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
+            // Creating RestockOrder table
             migrationBuilder.CreateTable(
                 name: "RestockOrder",
                 columns: table => new
@@ -158,6 +164,7 @@ namespace MVC_Group_8.Data.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
+            // Creating SaleDetail table
             migrationBuilder.CreateTable(
                 name: "SaleDetail",
                 columns: table => new
@@ -186,6 +193,7 @@ namespace MVC_Group_8.Data.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
+            // Creating Indexes
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_ManagerId",
                 table: "AspNetUsers",
@@ -195,28 +203,6 @@ namespace MVC_Group_8.Data.Migrations
                 name: "IX_AspNetUsers_ManagerId1",
                 table: "AspNetUsers",
                 column: "ManagerId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_InventoryHistory_ProductId",
-                table: "InventoryHistory",
-                column: "ProductId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Product_SupplierId",
-                table: "Product",
-                column: "SupplierId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RestockOrder_ProductId",
-                table: "RestockOrder",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RestockOrder_SupplierId",
-                table: "RestockOrder",
-                column: "SupplierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sale_StaffId1",
@@ -233,6 +219,7 @@ namespace MVC_Group_8.Data.Migrations
                 table: "SaleDetail",
                 column: "SaleId");
 
+            // Adding Foreign Keys
             migrationBuilder.AddForeignKey(
                 name: "FK_AspNetUsers_AspNetUsers_ManagerId",
                 table: "AspNetUsers",
@@ -249,9 +236,10 @@ namespace MVC_Group_8.Data.Migrations
                 principalColumn: "Id");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            // Dropping all the tables and columns created in the Up method
+
             migrationBuilder.DropForeignKey(
                 name: "FK_AspNetUsers_AspNetUsers_ManagerId",
                 table: "AspNetUsers");
@@ -270,21 +258,13 @@ namespace MVC_Group_8.Data.Migrations
                 name: "SaleDetail");
 
             migrationBuilder.DropTable(
+                name: "Supplier");
+
+            migrationBuilder.DropTable(
                 name: "Product");
 
             migrationBuilder.DropTable(
                 name: "Sale");
-
-            migrationBuilder.DropTable(
-                name: "Supplier");
-
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_ManagerId",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_ManagerId1",
-                table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
                 name: "Discriminator",

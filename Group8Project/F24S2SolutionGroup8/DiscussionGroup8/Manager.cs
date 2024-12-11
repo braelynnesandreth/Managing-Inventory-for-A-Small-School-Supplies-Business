@@ -19,25 +19,35 @@ namespace LibraryGroup8
         }
 
         public Manager(string firstname, string lastname, string email, string password)
-           : base(firstname, lastname, email, password)
+      : base(firstname, lastname, email, password)
         {
             StaffMembers = new List<Staff>();
             Products = new List<Product>();
             InventoryHistories = new List<InventoryHistory>();
         }
-        public IEnumerable<InventoryHistory> ReviewInventoryHistory(int productId) => InventoryHistories.Where(h => h.ProductId == productId).ToList();
 
+        public IEnumerable<InventoryHistory> ReviewInventoryHistory(int productId) =>
+        InventoryHistories.Where(h => h.Product.ProductId == productId).ToList();
 
         public IEnumerable<RestockOrder> AnalyzeRestockingTrends(int productId, DateTime startDate, DateTime endDate)
         {
             return Products
-                .FirstOrDefault(p => p.ProductId == productId)?.RestockOrder
-                .Where(r => r.Date >= startDate && r.Date <= endDate)
-                .ToList();
+            .FirstOrDefault(p => p.ProductId == productId)?.RestockOrder
+            .Where(r => r.Date >= startDate && r.Date <= endDate)
+            .ToList();
+
         }
     }
-
-    public class RestockingTrend
-    {
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

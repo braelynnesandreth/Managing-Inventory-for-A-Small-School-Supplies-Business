@@ -47,7 +47,7 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("InventoryHistory");
+                    b.ToTable("InventoryHistory", (string)null);
                 });
 
             modelBuilder.Entity("LibraryGroup8.Product", b =>
@@ -75,32 +75,23 @@ namespace MVC_Group_8.Data.Migrations
                     b.Property<int>("ReorderPoint")
                         .HasColumnType("int");
 
-                    b.Property<string>("SmallBusinessOwnerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Supplier")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SupplierID")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("SmallBusinessOwnerId");
+                    b.HasIndex("SupplierId");
 
-                    b.HasIndex("SupplierID");
-
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("LibraryGroup8.RestockOrder", b =>
                 {
-                    b.Property<int>("RestockOrderId")
+                    b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RestockOrderId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -108,34 +99,29 @@ namespace MVC_Group_8.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SmallBusinessOwnerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SupplierID")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
-                    b.HasKey("RestockOrderId");
+                    b.HasKey("OrderID");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("SmallBusinessOwnerId");
+                    b.HasIndex("SupplierId");
 
-                    b.HasIndex("SupplierID");
-
-                    b.ToTable("RestockOrder");
+                    b.ToTable("RestockOrder", (string)null);
                 });
 
             modelBuilder.Entity("LibraryGroup8.Sale", b =>
                 {
-                    b.Property<int>("SaleID")
+                    b.Property<int>("SaleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
 
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime2");
@@ -143,23 +129,17 @@ namespace MVC_Group_8.Data.Migrations
                     b.Property<TimeSpan>("SaleTime")
                         .HasColumnType("time");
 
-                    b.Property<string>("SmallBusinessOwnerId")
+                    b.Property<int>("StaffId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StaffId1")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Staff")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("SaleId");
 
-                    b.Property<string>("StaffId")
-                        .HasColumnType("nvarchar(450)");
+                    b.HasIndex("StaffId1");
 
-                    b.HasKey("SaleID");
-
-                    b.HasIndex("SmallBusinessOwnerId");
-
-                    b.HasIndex("StaffId");
-
-                    b.ToTable("Sale");
+                    b.ToTable("Sale", (string)null);
                 });
 
             modelBuilder.Entity("LibraryGroup8.SaleDetail", b =>
@@ -188,16 +168,16 @@ namespace MVC_Group_8.Data.Migrations
 
                     b.HasIndex("SaleId");
 
-                    b.ToTable("SaleDetail");
+                    b.ToTable("SaleDetail", (string)null);
                 });
 
             modelBuilder.Entity("LibraryGroup8.Supplier", b =>
                 {
-                    b.Property<int>("SupplierID")
+                    b.Property<int>("SupplierId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierId"));
 
                     b.Property<string>("ContactInfo")
                         .IsRequired()
@@ -207,9 +187,9 @@ namespace MVC_Group_8.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SupplierID");
+                    b.HasKey("SupplierId");
 
-                    b.ToTable("Supplier");
+                    b.ToTable("Supplier", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -449,6 +429,12 @@ namespace MVC_Group_8.Data.Migrations
                 {
                     b.HasBaseType("LibraryGroup8.AppUser");
 
+                    b.Property<string>("ManagerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasIndex("ManagerId");
+
                     b.HasDiscriminator().HasValue("SmallBusinessOwner");
                 });
 
@@ -456,10 +442,19 @@ namespace MVC_Group_8.Data.Migrations
                 {
                     b.HasBaseType("LibraryGroup8.AppUser");
 
-                    b.Property<string>("ManagerId")
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ManagerId1")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("ManagerId");
+                    b.HasIndex("ManagerId1");
+
+                    b.ToTable("AspNetUsers", null, t =>
+                        {
+                            t.Property("ManagerId")
+                                .HasColumnName("Staff_ManagerId");
+                        });
 
                     b.HasDiscriminator().HasValue("Staff");
                 });
@@ -477,13 +472,13 @@ namespace MVC_Group_8.Data.Migrations
 
             modelBuilder.Entity("LibraryGroup8.Product", b =>
                 {
-                    b.HasOne("LibraryGroup8.SmallBusinessOwner", null)
-                        .WithMany("Products")
-                        .HasForeignKey("SmallBusinessOwnerId");
-
-                    b.HasOne("LibraryGroup8.Supplier", null)
+                    b.HasOne("LibraryGroup8.Supplier", "Supplier")
                         .WithMany("Product")
-                        .HasForeignKey("SupplierID");
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("LibraryGroup8.RestockOrder", b =>
@@ -494,13 +489,9 @@ namespace MVC_Group_8.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibraryGroup8.SmallBusinessOwner", null)
-                        .WithMany("RestockOrders")
-                        .HasForeignKey("SmallBusinessOwnerId");
-
                     b.HasOne("LibraryGroup8.Supplier", "Supplier")
                         .WithMany("RestocksTheOrder")
-                        .HasForeignKey("SupplierID")
+                        .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -511,13 +502,11 @@ namespace MVC_Group_8.Data.Migrations
 
             modelBuilder.Entity("LibraryGroup8.Sale", b =>
                 {
-                    b.HasOne("LibraryGroup8.SmallBusinessOwner", null)
+                    b.HasOne("LibraryGroup8.Staff", "Staff")
                         .WithMany("Sales")
-                        .HasForeignKey("SmallBusinessOwnerId");
+                        .HasForeignKey("StaffId1");
 
-                    b.HasOne("LibraryGroup8.Staff", null)
-                        .WithMany("Sales")
-                        .HasForeignKey("StaffId");
+                    b.Navigation("Staff");
                 });
 
             modelBuilder.Entity("LibraryGroup8.SaleDetail", b =>
@@ -590,11 +579,22 @@ namespace MVC_Group_8.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("LibraryGroup8.SmallBusinessOwner", b =>
+                {
+                    b.HasOne("LibraryGroup8.Manager", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+                });
+
             modelBuilder.Entity("LibraryGroup8.Staff", b =>
                 {
                     b.HasOne("LibraryGroup8.Manager", "Manager")
                         .WithMany("StaffMembers")
-                        .HasForeignKey("ManagerId");
+                        .HasForeignKey("ManagerId1");
 
                     b.Navigation("Manager");
                 });
@@ -623,15 +623,6 @@ namespace MVC_Group_8.Data.Migrations
             modelBuilder.Entity("LibraryGroup8.Manager", b =>
                 {
                     b.Navigation("StaffMembers");
-                });
-
-            modelBuilder.Entity("LibraryGroup8.SmallBusinessOwner", b =>
-                {
-                    b.Navigation("Products");
-
-                    b.Navigation("RestockOrders");
-
-                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Staff", b =>

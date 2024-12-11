@@ -8,8 +8,6 @@ namespace LibraryGroup8
     public class SaleDetail
     {
         public int SaleDetailId { get; set; }
-       // public int SaleId { get; set; }
-       // public int ProductId { get; set; }
         public Product Product { get; set; }
         public Sale Sale { get; set; }
         public int Quantity { get; set; }
@@ -33,10 +31,7 @@ namespace LibraryGroup8
         }
 
         
-       // public override string ToString()
-       // {
-       //     return $"SaleDetailId: {SaleDetailId}, SaleId: {SaleId}, ProductId: {ProductId}, Quantity: {Quantity}, UnitPrice: {UnitPrice:C}, Subtotal: {CalculateSubtotal():C}";
-       // }
+      
     }
 }
 
