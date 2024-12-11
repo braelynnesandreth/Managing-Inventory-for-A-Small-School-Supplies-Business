@@ -31,6 +31,27 @@ namespace LibraryGroup8
             SaleDetails = new List<SaleDetail>();
         }
 
+        public static List<Sale> SearchSales
+            (List<Sale> inputSales,
+            DateTime? inputDateSaleMade,
+            TimeSpan? inputTimeSaleMade)
+        {
+            List<Sale> searchResult = inputSales;
+
+            //Filter based on input criteria
+            if (inputDateSaleMade != null)
+            {
+                searchResult = searchResult.Where(s => s.SaleDate == inputDateSaleMade).ToList();
+            }
+
+            if (inputTimeSaleMade != null)
+            {
+                searchResult = searchResult.Where(s => s.SaleTime == inputTimeSaleMade).ToList();
+            }
+
+            return searchResult;
+        }
+
         // Method to calculate the total amount for the sale
         public decimal CalculateTotal()
         {
