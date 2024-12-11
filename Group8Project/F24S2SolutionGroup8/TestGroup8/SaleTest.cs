@@ -54,6 +54,7 @@ namespace TestGroup8
                 };
             testSales.Add(sale);
 
+
             return testSales;
         }
     }
