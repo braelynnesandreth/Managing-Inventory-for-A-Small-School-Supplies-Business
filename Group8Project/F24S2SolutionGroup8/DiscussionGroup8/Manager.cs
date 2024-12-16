@@ -7,15 +7,15 @@ namespace LibraryGroup8
 {
     public class Manager : AppUser
     {
-        public ICollection<Staff> StaffMembers { get; set; }
-        public ICollection<Product> Products { get; set; }
-        public ICollection<InventoryHistory> InventoryHistories { get; set; }
+        public List<Staff> StaffMembers { get; set; }
+        public List<Product> Products { get; set; }
+        public List<InventoryHistory> InventoryHistories { get; set; }
 
         public Manager()
         {
             StaffMembers = new List<Staff>();
-            Products = new HashSet<Product>();
-            InventoryHistories = new HashSet<InventoryHistory>();
+            Products = new List<Product>();
+            InventoryHistories = new List<InventoryHistory>();
         }
 
         public Manager(string firstname, string lastname, string email, string password)

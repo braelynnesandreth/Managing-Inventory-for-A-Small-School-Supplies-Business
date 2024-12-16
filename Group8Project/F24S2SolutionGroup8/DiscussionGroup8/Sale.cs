@@ -15,7 +15,7 @@ namespace LibraryGroup8
         public int StaffId { get; set; }
         public Staff Staff { get; set; }
 
-        public ICollection<SaleDetail> SaleDetails { get; set; }
+        public List<SaleDetail> SaleDetails { get; set; }
        
 
         public Sale()

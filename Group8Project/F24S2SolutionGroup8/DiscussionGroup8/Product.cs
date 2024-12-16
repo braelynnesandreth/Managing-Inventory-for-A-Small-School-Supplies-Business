@@ -13,13 +13,13 @@ namespace LibraryGroup8
         public int CurrentStock { get; set; }
         public int ReorderPoint { get; set; }
         public int MaxStock { get; set; }
-        //public Supplier Supplier { get; set; }
-        //public int SupplierId { get; set; }
+        public Supplier Supplier { get; set; }
+        
 
-        public ICollection<InventoryHistory> InventoryHistory { get; set; }
+        public List<InventoryHistory> InventoryHistory { get; set; }
 
-        public ICollection<SaleDetail> SaleDetail { get; set; }
-        public ICollection<RestockOrder> RestockOrder {get; set;}
+        public List<SaleDetail> SaleDetail { get; set; }
+        public List<RestockOrder> RestockOrder {get; set;}
 
         public void Updatestock()
         {
@@ -39,7 +39,7 @@ namespace LibraryGroup8
             
         }
         
-        public Product(string name, string description, int currentStock, int reorderPoint, int maxStock, string supplier)
+        public Product(string name, string description, int currentStock, int reorderPoint, int maxStock, Supplier supplier)
         {
             Name = name;
             Description = description;
