@@ -13,8 +13,8 @@ namespace LibraryGroup8
         public int CurrentStock { get; set; }
         public int ReorderPoint { get; set; }
         public int MaxStock { get; set; }
-        public string Supplier { get; set; }
-        public int SupplierId { get; set; }
+        //public Supplier Supplier { get; set; }
+        //public int SupplierId { get; set; }
 
         public ICollection<InventoryHistory> InventoryHistory { get; set; }
 

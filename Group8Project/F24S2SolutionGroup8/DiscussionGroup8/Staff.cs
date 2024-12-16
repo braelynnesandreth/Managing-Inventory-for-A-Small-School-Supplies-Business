@@ -7,11 +7,11 @@ namespace LibraryGroup8
 {
     public class Staff : AppUser
     {
-        public ICollection<Sale> Sales { get; set; }
+        public List<Sale> Sales { get; set; }
         public Manager Manager { get; set; }
 
         
-        public Staff() : base() 
+        public Staff()
         {
             Sales = new List<Sale>(); 
         }
