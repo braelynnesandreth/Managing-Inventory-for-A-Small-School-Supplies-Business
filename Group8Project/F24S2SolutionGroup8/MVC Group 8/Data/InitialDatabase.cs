@@ -196,30 +196,41 @@ namespace MVC_Group_8.Data
 
             if (!database.Product.Any())
             {
-                Supplier supplier = database.Supplier.FirstOrDefault();
+                // Ensure suppliers exist in the database
+                Supplier abcSupplies = database.Supplier.FirstOrDefault(s => s.Name == "ABC Supplies")
+                                       ?? new Supplier { Name = "ABC Supplies" };
+                Supplier walmart = database.Supplier.FirstOrDefault(s => s.Name == "Walmart")
+                                   ?? new Supplier { Name = "Walmart" };
+                Supplier xyzCorp = database.Supplier.FirstOrDefault(s => s.Name == "XYZ Corp")
+                                   ?? new Supplier { Name = "XYZ Corp" };
 
-                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, "ABC Supplies");
-                database.Product.Add(product);
+                // Add suppliers to the database if they don't exist
+                if (abcSupplies.SupplierID == 0) database.Supplier.Add(abcSupplies);
+                if (walmart.SupplierID == 0) database.Supplier.Add(walmart);
+                if (xyzCorp.SupplierID == 0) database.Supplier.Add(xyzCorp);
                 database.SaveChanges();
 
-                product = new Product ("Notebook", "Spiral notebook with 100 pages", 150, 30, 300, "Walmart");
+                // Add products with supplier objects
+                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, abcSupplies);
                 database.Product.Add(product);
-                database.SaveChanges();
 
-                product = new Product ("Pen","Ballpoint pen",200,40, 500, "Walmart");
+                product = new Product("Notebook", "Spiral notebook with 100 pages", 150, 30, 300, walmart);
                 database.Product.Add(product);
-                database.SaveChanges();
 
-                product = new Product ("Eraser", "Rubber eraser", 75, 15, 150, "XYZ Corp" );
+                product = new Product("Pen", "Ballpoint pen", 200, 40, 500, walmart);
                 database.Product.Add(product);
-                database.SaveChanges();
 
-                product = new Product ("Ruler", "Plastic ruler 30 cm", 50, 10, 100, "XYZ Corp");
+                product = new Product("Eraser", "Rubber eraser", 75, 15, 150, xyzCorp);
                 database.Product.Add(product);
-                database.SaveChanges();
 
+                product = new Product("Ruler", "Plastic ruler 30 cm", 50, 10, 100, xyzCorp);
+                database.Product.Add(product);
+
+                // Save changes to the database
                 database.SaveChanges();
             }
+
+
 
 
             if (!database.SaleDetail.Any())
