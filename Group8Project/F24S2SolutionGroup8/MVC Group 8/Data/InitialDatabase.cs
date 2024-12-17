@@ -167,32 +167,63 @@ namespace MVC_Group_8.Data
                 database.SaveChanges();
             }
 
-
             if (!database.Supplier.Any())
             {
-                Supplier supplier = new Supplier("Pencil", "ABC Supplies", "contact@abcsupplies.com");
-                database.Supplier.Add(supplier);
+                // Create new suppliers if they don't already exist
+                Supplier abcSupplies = database.Supplier.FirstOrDefault(s => s.Name == "ABC Supplies")
+                                       ?? new Supplier { Name = "ABC Supplies" };
+
+                Supplier walmart = database.Supplier.FirstOrDefault(s => s.Name == "Walmart")
+                                   ?? new Supplier { Name = "Walmart" };
+
+                Supplier xyzCorp = database.Supplier.FirstOrDefault(s => s.Name == "XYZ Corp")
+                                   ?? new Supplier { Name = "XYZ Corp" };
+
+                // Add suppliers to the database if they don't exist
+                if (abcSupplies.SupplierID == 0)
+                {
+                    database.Supplier.Add(abcSupplies);
+                }
+
+                if (walmart.SupplierID == 0)
+                {
+                    database.Supplier.Add(walmart);
+                }
+
+                if (xyzCorp.SupplierID == 0)
+                {
+                    database.Supplier.Add(xyzCorp);
+                }
+
+                // Save changes to ensure SupplierID is set
                 database.SaveChanges();
 
-                supplier = new Supplier("Eraser", "XYZ Corp", "sales@xyzcorp.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
+                // Ensure that SupplierID is assigned properly
+                Console.WriteLine($"ABC Supplies SupplierID: {abcSupplies.SupplierID}");
+                Console.WriteLine($"Walmart SupplierID: {walmart.SupplierID}");
+                Console.WriteLine($"XYZ Corp SupplierID: {xyzCorp.SupplierID}");
 
-                supplier = new Supplier("Notebook", "Walmart", "walmart@gmail.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
+                // Add products with the created suppliers
+                Product product = new Product("Pencil", "Standard wooden pencil", 100, 20, 200, abcSupplies);
+                database.Product.Add(product);
 
-                supplier = new Supplier("Pen", "Walmart", "walmart@gmail.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
+                product = new Product("Notebook", "Spiral notebook with 100 pages", 150, 30, 300, walmart);
+                database.Product.Add(product);
 
+                product = new Product("Pen", "Ballpoint pen", 200, 40, 500, walmart);
+                database.Product.Add(product);
 
-                supplier = new Supplier("Ruler", "XYZ Corp", "sales@xyzcorp.com");
-                database.Supplier.Add(supplier);
-                database.SaveChanges();
+                product = new Product("Eraser", "Rubber eraser", 75, 15, 150, xyzCorp);
+                database.Product.Add(product);
 
+                product = new Product("Ruler", "Plastic ruler 30 cm", 50, 10, 100, xyzCorp);
+                database.Product.Add(product);
+
+                // Save changes for products
                 database.SaveChanges();
             }
+
+
 
             if (!database.Product.Any())
             {
@@ -260,7 +291,7 @@ namespace MVC_Group_8.Data
             {
 
                 Product product = new Product();
-                InventoryHistory inventoryHistory = new InventoryHistory ( new DateTime(20204, 1, 1), 10, "Found a better price", product );
+                InventoryHistory inventoryHistory = new InventoryHistory ( new DateTime(2024, 1, 1), 10, "Found a better price", product );
                 database.InventoryHistory.Add(inventoryHistory);
 
                 inventoryHistory = new InventoryHistory ( new DateTime(2024, 4, 1), 20, "Do not need it anympore", product );
