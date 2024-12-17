@@ -26,15 +26,15 @@ namespace TestGroup8
 
         public RestockOrder CreateTestRestockOrder()
         {
-            // Create a Product instance for the test
-            var product = new Product("Test Product", "Test Description", 50, 10, 200, "Test Supplier");
-
             // Create a Supplier instance for the test
             var supplier = new Supplier
             {
                 Name = "Test Supplier",
                 ContactInfo = "contact@testsupplier.com"
             };
+
+            // Create a Product instance for the test using the Supplier object
+            var product = new Product("Test Product", "Test Description", 50, 10, 200, supplier);
 
             // Create a RestockOrder instance with the product, supplier, and initial status
             var restockOrder = new RestockOrder(supplier, product, DateTime.Now, "Pending")
@@ -46,17 +46,6 @@ namespace TestGroup8
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
