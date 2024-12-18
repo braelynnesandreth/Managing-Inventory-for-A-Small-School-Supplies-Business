@@ -8,9 +8,11 @@ namespace LibraryGroup8
 {
     public class RestockOrder
     {
-        [Key]
+        
         public int RestockOrderId { get; set; }
+        [Required]
         public Supplier Supplier { get; set; }
+        [Required]
         public Product Product { get; set; }
         public DateTime Date { get; set; }
         public string Status { get; set; }

@@ -167,6 +167,7 @@ namespace MVC_Group_8.Data
                 database.SaveChanges();
             }
 
+
             if (!database.Supplier.Any())
             {
                 // Create new suppliers if they don't already exist
