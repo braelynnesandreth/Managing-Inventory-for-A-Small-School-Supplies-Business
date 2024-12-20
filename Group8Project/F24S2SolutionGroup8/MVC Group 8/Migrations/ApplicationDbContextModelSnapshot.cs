@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using LibraryGroup8;
 
 #nullable disable
 
@@ -76,7 +75,12 @@ namespace MVC_Group_8.Migrations
                     b.Property<int>("ReorderPoint")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductId");
+
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("Product");
                 });
@@ -163,7 +167,7 @@ namespace MVC_Group_8.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("SaleDetailId");
 
@@ -173,10 +177,6 @@ namespace MVC_Group_8.Migrations
 
                     b.ToTable("SaleDetail");
                 });
-
-            modelBuilder.Entity<SaleDetail>()
-  .Property(p => p.UnitPrice)
-  .HasColumnType("decimal(18, 2)");
 
             modelBuilder.Entity("LibraryGroup8.Supplier", b =>
                 {
@@ -455,6 +455,15 @@ namespace MVC_Group_8.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("LibraryGroup8.Product", b =>
+                {
+                    b.HasOne("LibraryGroup8.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("LibraryGroup8.RestockOrder", b =>

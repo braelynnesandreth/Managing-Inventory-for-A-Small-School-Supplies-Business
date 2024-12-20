@@ -20,5 +20,9 @@
     <ProjectReference Include="..\DiscussionGroup8\LibraryGroup8.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 
 </Project>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Group_8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241216195000_AddedAllClasses_16Dec2024")]
-    partial class AddedAllClasses_16Dec2024
+    [Migration("20241220063743_AddedFixedClasses")]
+    partial class AddedFixedClasses
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,9 +36,6 @@ namespace MVC_Group_8.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -50,8 +47,6 @@ namespace MVC_Group_8.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("InventoryHistoryId");
-
-                    b.HasIndex("ManagerId");
 
                     b.HasIndex("ProductId");
 
@@ -73,9 +68,6 @@ namespace MVC_Group_8.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("MaxStock")
                         .HasColumnType("int");
 
@@ -86,21 +78,10 @@ namespace MVC_Group_8.Migrations
                     b.Property<int>("ReorderPoint")
                         .HasColumnType("int");
 
-                    b.Property<string>("SmallBusinessOwnerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Supplier")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("ManagerId");
-
-                    b.HasIndex("SmallBusinessOwnerId");
 
                     b.HasIndex("SupplierId");
 
@@ -118,6 +99,9 @@ namespace MVC_Group_8.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ManagerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -128,48 +112,42 @@ namespace MVC_Group_8.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SupplierID")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("RestockOrderId");
+
+                    b.HasIndex("ManagerId");
 
                     b.HasIndex("ProductId");
 
                     b.HasIndex("SmallBusinessOwnerId");
 
-                    b.HasIndex("SupplierID");
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("RestockOrder");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Sale", b =>
                 {
-                    b.Property<int>("SaleID")
+                    b.Property<int>("SaleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
 
-                    b.Property<DateTime>("SaleDate")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("SaleTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("SaleDateTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("SmallBusinessOwnerId")
+                    b.Property<string>("StaffId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
+                    b.HasKey("SaleId");
 
-                    b.Property<string>("StaffId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("SaleID");
-
-                    b.HasIndex("SmallBusinessOwnerId");
-
-                    b.HasIndex("StaffId1");
+                    b.HasIndex("StaffId");
 
                     b.ToTable("Sale");
                 });
@@ -188,28 +166,28 @@ namespace MVC_Group_8.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("SaleID")
+                    b.Property<int?>("SaleId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("SaleDetailId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("SaleID");
+                    b.HasIndex("SaleId");
 
                     b.ToTable("SaleDetail");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Supplier", b =>
                 {
-                    b.Property<int>("SupplierID")
+                    b.Property<int>("SupplierId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierId"));
 
                     b.Property<string>("ContactInfo")
                         .IsRequired()
@@ -219,7 +197,7 @@ namespace MVC_Group_8.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SupplierID");
+                    b.HasKey("SupplierId");
 
                     b.ToTable("Supplier");
                 });
@@ -450,6 +428,13 @@ namespace MVC_Group_8.Migrations
                     b.HasDiscriminator().HasValue("AppUser");
                 });
 
+            modelBuilder.Entity("LibraryGroup8.LibraryGroup8.Staff", b =>
+                {
+                    b.HasBaseType("LibraryGroup8.AppUser");
+
+                    b.HasDiscriminator().HasValue("Staff");
+                });
+
             modelBuilder.Entity("LibraryGroup8.Manager", b =>
                 {
                     b.HasBaseType("LibraryGroup8.AppUser");
@@ -464,26 +449,10 @@ namespace MVC_Group_8.Migrations
                     b.HasDiscriminator().HasValue("SmallBusinessOwner");
                 });
 
-            modelBuilder.Entity("LibraryGroup8.Staff", b =>
-                {
-                    b.HasBaseType("LibraryGroup8.AppUser");
-
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasIndex("ManagerId");
-
-                    b.HasDiscriminator().HasValue("Staff");
-                });
-
             modelBuilder.Entity("LibraryGroup8.InventoryHistory", b =>
                 {
-                    b.HasOne("LibraryGroup8.Manager", null)
-                        .WithMany("InventoryHistories")
-                        .HasForeignKey("ManagerId");
-
                     b.HasOne("LibraryGroup8.Product", "Product")
-                        .WithMany("InventoryHistory")
+                        .WithMany("InventoryHistories")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -493,38 +462,36 @@ namespace MVC_Group_8.Migrations
 
             modelBuilder.Entity("LibraryGroup8.Product", b =>
                 {
-                    b.HasOne("LibraryGroup8.Manager", null)
-                        .WithMany("Products")
-                        .HasForeignKey("ManagerId");
+                    b.HasOne("LibraryGroup8.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId");
 
-                    b.HasOne("LibraryGroup8.SmallBusinessOwner", null)
-                        .WithMany("Products")
-                        .HasForeignKey("SmallBusinessOwnerId");
-
-                    b.HasOne("LibraryGroup8.Supplier", null)
-                        .WithMany("Product")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("LibraryGroup8.RestockOrder", b =>
                 {
-                    b.HasOne("LibraryGroup8.Product", "Product")
+                    b.HasOne("LibraryGroup8.Manager", "Manager")
                         .WithMany("RestockOrder")
+                        .HasForeignKey("ManagerId");
+
+                    b.HasOne("LibraryGroup8.Product", "Product")
+                        .WithMany("RestockOrders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LibraryGroup8.SmallBusinessOwner", null)
-                        .WithMany("RestockOrders")
+                        .WithMany("ApprovedOrders")
                         .HasForeignKey("SmallBusinessOwnerId");
 
                     b.HasOne("LibraryGroup8.Supplier", "Supplier")
-                        .WithMany("RestocksTheOrder")
-                        .HasForeignKey("SupplierID")
+                        .WithMany("RestockOrders")
+                        .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Manager");
 
                     b.Navigation("Product");
 
@@ -533,13 +500,9 @@ namespace MVC_Group_8.Migrations
 
             modelBuilder.Entity("LibraryGroup8.Sale", b =>
                 {
-                    b.HasOne("LibraryGroup8.SmallBusinessOwner", null)
+                    b.HasOne("LibraryGroup8.LibraryGroup8.Staff", "Staff")
                         .WithMany("Sales")
-                        .HasForeignKey("SmallBusinessOwnerId");
-
-                    b.HasOne("LibraryGroup8.Staff", "Staff")
-                        .WithMany("Sales")
-                        .HasForeignKey("StaffId1");
+                        .HasForeignKey("StaffId");
 
                     b.Navigation("Staff");
                 });
@@ -547,20 +510,16 @@ namespace MVC_Group_8.Migrations
             modelBuilder.Entity("LibraryGroup8.SaleDetail", b =>
                 {
                     b.HasOne("LibraryGroup8.Product", "Product")
-                        .WithMany("SaleDetail")
+                        .WithMany("SaleDetails")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibraryGroup8.Sale", "Sale")
-                        .WithMany("SaleDetails")
-                        .HasForeignKey("SaleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("LibraryGroup8.Sale", null)
+                        .WithMany("SaleDetail")
+                        .HasForeignKey("SaleId");
 
                     b.Navigation("Product");
-
-                    b.Navigation("Sale");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -614,57 +573,38 @@ namespace MVC_Group_8.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LibraryGroup8.Staff", b =>
-                {
-                    b.HasOne("LibraryGroup8.Manager", "Manager")
-                        .WithMany("StaffMembers")
-                        .HasForeignKey("ManagerId");
-
-                    b.Navigation("Manager");
-                });
-
             modelBuilder.Entity("LibraryGroup8.Product", b =>
                 {
-                    b.Navigation("InventoryHistory");
+                    b.Navigation("InventoryHistories");
 
-                    b.Navigation("RestockOrder");
+                    b.Navigation("RestockOrders");
 
-                    b.Navigation("SaleDetail");
+                    b.Navigation("SaleDetails");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Sale", b =>
                 {
-                    b.Navigation("SaleDetails");
+                    b.Navigation("SaleDetail");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Supplier", b =>
                 {
-                    b.Navigation("Product");
+                    b.Navigation("RestockOrders");
+                });
 
-                    b.Navigation("RestocksTheOrder");
+            modelBuilder.Entity("LibraryGroup8.LibraryGroup8.Staff", b =>
+                {
+                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("LibraryGroup8.Manager", b =>
                 {
-                    b.Navigation("InventoryHistories");
-
-                    b.Navigation("Products");
-
-                    b.Navigation("StaffMembers");
+                    b.Navigation("RestockOrder");
                 });
 
             modelBuilder.Entity("LibraryGroup8.SmallBusinessOwner", b =>
                 {
-                    b.Navigation("Products");
-
-                    b.Navigation("RestockOrders");
-
-                    b.Navigation("Sales");
-                });
-
-            modelBuilder.Entity("LibraryGroup8.Staff", b =>
-                {
-                    b.Navigation("Sales");
+                    b.Navigation("ApprovedOrders");
                 });
 #pragma warning restore 612, 618
         }
