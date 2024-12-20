@@ -29,7 +29,17 @@ namespace LibraryGroup8
             Name = name;
             Description = description;
         }
+        public void UpdateStock(int quantityChange)
+        {
+            CurrentStock += quantityChange;
+        }
+
+        public bool CheckLowStock()
+        {
+            return CurrentStock <= ReorderPoint;
+        }
     }
 }
+    
     
 

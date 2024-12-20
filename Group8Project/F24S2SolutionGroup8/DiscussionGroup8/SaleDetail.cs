@@ -14,7 +14,7 @@ namespace LibraryGroup8
         public int Quantity { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal UnitPrice { get; set; }
-        public int ProductId { get; set; }
+        
         public Product Product { get; set; }
 
         public SaleDetail() { }
@@ -26,6 +26,11 @@ namespace LibraryGroup8
             this.UnitPrice = UnitPrice;
             this.Product = Product;
         }
+        public decimal CalculateSubtotal()
+        {
+            return Quantity * UnitPrice;
+        }
     }
 }
+
 

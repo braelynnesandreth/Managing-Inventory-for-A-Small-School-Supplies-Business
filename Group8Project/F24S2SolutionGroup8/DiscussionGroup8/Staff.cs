@@ -23,6 +23,11 @@ namespace LibraryGroup8
             {
                 Sales.Add(sale);
             }
+
+            public void UpdateInventory(Product product, int quantityChange)
+            {
+                product.UpdateStock(quantityChange);
+            }
         }
     }
 }

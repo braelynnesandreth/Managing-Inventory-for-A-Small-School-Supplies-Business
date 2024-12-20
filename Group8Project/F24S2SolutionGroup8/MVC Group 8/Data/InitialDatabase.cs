@@ -172,7 +172,7 @@ namespace MVC_Group_8.Data
                     {
                         RestockOrder restockOrder = new RestockOrder(
                             DateTime.Now.AddDays(-i),
-                            i % 2 == 0 ? "Completed" : "Pending",
+                            i % 2 == 0 ? RestockOrder.RestockOrderStatus.Completed : RestockOrder.RestockOrderStatus.Pending,
                             database.Product.First(),
                             database.Supplier.First(),
                             new Manager("Manager", "Test", "manager@test.com", "ManagerPass123!")
@@ -185,4 +185,3 @@ namespace MVC_Group_8.Data
         }
     }
 }
-
