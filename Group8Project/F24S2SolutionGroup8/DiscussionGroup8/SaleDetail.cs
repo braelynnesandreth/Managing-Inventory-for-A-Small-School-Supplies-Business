@@ -8,33 +8,21 @@ namespace LibraryGroup8
 {
     public class SaleDetail
     {
+        [Key]
         public int SaleDetailId { get; set; }
-        [Required]
-        public Product Product { get; set; }
-        [Required]
-        public Sale Sale { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
+        public Product Product { get; set; }
 
-        // Constructor
         public SaleDetail() { }
 
-        public SaleDetail(Sale sale, Product product, int quantity, decimal unitPrice)
-        {
-            Sale = sale;
-            Product = product;
-            Quantity = quantity;
-            UnitPrice = unitPrice;
-        }
+        public SaleDetail(int Quantity, decimal UnitPrice, Product Product)
 
-        // Method to calculate the subtotal for this SaleDetail
-        public decimal CalculateSubtotal()
         {
-            return Quantity * UnitPrice;
+            this.Quantity = Quantity;
+            this.UnitPrice = UnitPrice;
+            this.Product = Product;
         }
-
-        
-      
     }
 }
 

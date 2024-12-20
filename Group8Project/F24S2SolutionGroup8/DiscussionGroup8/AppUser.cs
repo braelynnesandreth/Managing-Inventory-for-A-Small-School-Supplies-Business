@@ -6,28 +6,26 @@ using Microsoft.AspNetCore.Identity;
 
 namespace LibraryGroup8
 {
-    public class AppUser : IdentityUser
+        public class AppUser : IdentityUser
 
-    {
-       public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public AppUser() { }
-
-        public AppUser(string firstname, string lastname,string email, string password)
         {
+            public string Firstname { get; set; }
+            public string Lastname { get; set; }
+            public AppUser() { }
 
-            Firstname = firstname;
-            Lastname = lastname;
-            Email = email;
-            UserName = email;
+            public AppUser(string firstname, string lastname, string email, string password)
+            {
 
-            var passwordHasher = new PasswordHasher<AppUser>();
-            PasswordHash = passwordHasher.HashPassword(this, password);
+                Firstname = firstname;
+                Lastname = lastname;
+                Email = email;
+                UserName = email;
+
+                var passwordHasher = new PasswordHasher<AppUser>();
+                PasswordHash = passwordHasher.HashPassword(this, password);
+            }
+
+
+
         }
-
-
-       // public bool ApproveRestock(RestockOrder order) { }
-
-       // public static Sale ViewSalesInsights(List<Sale> sales) { }
     }
-}

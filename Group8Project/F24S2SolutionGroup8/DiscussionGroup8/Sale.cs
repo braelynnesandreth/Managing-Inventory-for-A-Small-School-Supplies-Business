@@ -1,64 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using LibraryGroup8.LibraryGroup8;
 
 namespace LibraryGroup8
 {
-    public class Sale
-    {
-        public int SaleID { get; set; }
-        public DateTime SaleDate { get; set; }
-        public TimeSpan SaleTime { get; set; }
-
-
-        public int StaffId { get; set; }
-        public Staff Staff { get; set; }
-
-        public List<SaleDetail> SaleDetails { get; set; }
-       
-
-        public Sale()
+    
+        public class Sale
         {
-            SaleDetails = new List<SaleDetail>();
-        }
+            [Key]
 
-        public Sale(DateTime saleDate, TimeSpan saleTime, int staffId)
-        {
-            SaleDate = saleDate;
-            SaleTime = saleTime;
-            StaffId = staffId;
-            SaleDetails = new List<SaleDetail>();
-        }
+            public int SaleId { get; set; }
+            public DateTime Date { get; set; }
+            public Staff Staff { get; set; }
+            public DateTime SaleDateTime { get; set; }
 
-        public static List<Sale> SearchSales
-            (List<Sale> inputSales,
-            DateTime? inputDateSaleMade,
-            TimeSpan? inputTimeSaleMade)
-        {
-            List<Sale> searchResult = inputSales;
+            public List<SaleDetail> SaleDetail { get; set; } = new List<SaleDetail>();
 
-            //Filter based on input criteria
-            if (inputDateSaleMade != null)
+            public Sale() { }
+            public Sale(DateTime date, Staff staff, DateTime saleDateTime, List<SaleDetail> saleDetail)
             {
-                searchResult = searchResult.Where(s => s.SaleDate == inputDateSaleMade).ToList();
+
+                Date = date;
+                Staff = staff;
+                SaleDateTime = saleDateTime;
+                SaleDetail = saleDetail;
             }
-
-            if (inputTimeSaleMade != null)
-            {
-                searchResult = searchResult.Where(s => s.SaleTime == inputTimeSaleMade).ToList();
-            }
-
-            return searchResult;
         }
-
-        // Method to calculate the total amount for the sale
-        public decimal CalculateTotal()
-        {
-            return SaleDetails.Sum(sd => sd.Quantity * sd.UnitPrice);
-        }
-
     }
-}
 
 

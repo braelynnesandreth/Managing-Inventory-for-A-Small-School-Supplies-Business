@@ -5,42 +5,25 @@ using System.Text;
 
 namespace LibraryGroup8
 {
-    public class Staff : AppUser
+    namespace LibraryGroup8
     {
-        public List<Sale> Sales { get; set; }
-        public Manager Manager { get; set; }
-
-        
-        public Staff()
+        public class Staff : AppUser
         {
-            Sales = new List<Sale>(); 
-        }
+            public List<Sale> Sales { get; set; } = new List<Sale>();
 
-       
-        public Staff(string firstName, string lastName, string email, string userName, string password)
-            : base(firstName, lastName, email, password)
-        {
-            Sales = new List<Sale>(); 
-            this.UserName = userName; 
-        }
-
-        
-        public bool ProcessSale(Sale sale)
-        {
-            if (sale != null)
+            public Staff() { }
+            public Staff(string firstName, string lastName, string email, string password)
+                : base(firstName, lastName, email, password)
             {
-                Sales.Add(sale); 
-                return true;
+
+
             }
-            return false;
-        }
-        public void UpdateInventoryAfterRestock(int productId, int quantityReceived, List<Product> products)
-        {
-            var product = products.FirstOrDefault(p => p.ProductId == productId);
-            if (product != null)
+
+            public void ProcessSale(Sale sale)
             {
-                product.CurrentStock += quantityReceived;
+                Sales.Add(sale);
             }
         }
     }
 }
+

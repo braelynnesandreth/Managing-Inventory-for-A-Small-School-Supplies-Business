@@ -6,46 +6,27 @@ using System.Text;
 
 namespace LibraryGroup8
 {
-    public class RestockOrder
-    {
-        
-        public int RestockOrderId { get; set; }
-        [Required]
-        public Supplier Supplier { get; set; }
-        [Required]
-        public Product Product { get; set; }
-        public DateTime Date { get; set; }
-        public string Status { get; set; }
-
-        // Constructor
-        public RestockOrder() { }
-
-        
-        public RestockOrder(Supplier supplier, Product product, DateTime date, string status)
+   
+        public class RestockOrder
         {
-            Supplier = supplier;
-            Product = product;
-            Date = date;
-            Status = status;
-        }
 
-        
-        public bool approve()
-        {
-            
-            if (Status != "Pending")
+            [Key]
+            public int RestockOrderId { get; set; }
+            public DateTime Date { get; set; }
+            public string Status { get; set; }
+
+            public Product Product { get; set; }
+            public Supplier Supplier { get; set; }
+            public Manager Manager { get; set; }
+
+            public RestockOrder() { }
+            public RestockOrder(DateTime date, string status, Product product, Supplier supplier, Manager manager)
             {
-                return false;  
+                Date = date;
+                Status = status;
+                Product = product;
+                Supplier = supplier;
+                Manager = manager;
             }
-
-            Status = "Approved";
-            return true;  
-        }
-
-        public void cancel()
-        {
-            
-            Status = "Cancelled";
         }
     }
-}

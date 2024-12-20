@@ -4,17 +4,19 @@ using MVC_Group_8.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using LibraryGroup8;
 
 #nullable disable
 
 namespace MVC_Group_8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241220042119_FixedAllClasses")]
+    partial class FixedAllClasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,10 +175,6 @@ namespace MVC_Group_8.Migrations
 
                     b.ToTable("SaleDetail");
                 });
-
-            modelBuilder.Entity<SaleDetail>()
-  .Property(p => p.UnitPrice)
-  .HasColumnType("decimal(18, 2)");
 
             modelBuilder.Entity("LibraryGroup8.Supplier", b =>
                 {

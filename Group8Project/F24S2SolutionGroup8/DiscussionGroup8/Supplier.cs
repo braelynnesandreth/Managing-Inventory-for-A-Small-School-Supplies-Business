@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -7,36 +8,26 @@ using System.Threading.Tasks;
 
 namespace LibraryGroup8
 {
-    public class Supplier
-    {
-        public int SupplierID { get; set; }
-
-        public string Name { get; set; }
-
-        public string ContactInfo { get; set; }
-
-        public List<Product> Product {  get; set; }
-
-        
-        public List<RestockOrder> RestocksTheOrder { get; set; }
-
-
-
-
-        public Supplier()
+   
+  
+        public class Supplier
         {
-            RestocksTheOrder = new List<RestockOrder>();
-            
-           
-        }
+            [Key]
+            public int SupplierId { get; set; }
+            public string Name { get; set; }
+            public string ContactInfo { get; set; }
 
-        public Supplier(string product, string name, string contactInfo)
-        {
-            Product = new List<Product>();
-            Name = name;
-            ContactInfo = contactInfo;
-            RestocksTheOrder = new List<RestockOrder>();
-            
+            public List<RestockOrder> RestockOrders { get; set; } = new List<RestockOrder>();
+            public Supplier() { }
+            public Supplier(string name, string contactInfo, List<RestockOrder> restockOrders)
+            {
+                Name = name;
+                ContactInfo = contactInfo;
+                RestockOrders = restockOrders;
+
+            }
+
         }
     }
-}
+
+
