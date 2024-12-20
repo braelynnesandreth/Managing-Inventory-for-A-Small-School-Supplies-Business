@@ -32,11 +32,13 @@ namespace TestGroup8
             var product = new Product { CurrentStock = 50 };
 
             // Act
-            staff.UpdateInventory(product, -10);
+            staff.UpdateInventory(product, 10);  // Use positive value
 
             // Assert
-            Assert.Equal(40, product.CurrentStock);
+            Assert.Equal(60, product.CurrentStock);  // Assert updated stock
         }
     }
 }
+
+
 

@@ -24,6 +24,17 @@ namespace TestGroup8
         }
 
         [Fact]
+        public void Approve_ShouldThrowException_WhenOrderIsAlreadyCancelled()
+        {
+            // Arrange
+            var order = new RestockOrder { Status = RestockOrderStatus.Cancelled };
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => order.Approve());
+        }
+
+
+        [Fact]
         public void Cancel_ShouldChangeStatusToCancelled()
         {
             // Arrange
@@ -34,6 +45,15 @@ namespace TestGroup8
 
             // Assert
             Assert.Equal(RestockOrderStatus.Cancelled, order.Status);
+        }
+        [Fact]
+        public void Cancel_ShouldThrowException_WhenOrderIsAlreadyApproved()
+        {
+            // Arrange
+            var order = new RestockOrder { Status = RestockOrderStatus.Approved };
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => order.Cancel());
         }
     }
 }

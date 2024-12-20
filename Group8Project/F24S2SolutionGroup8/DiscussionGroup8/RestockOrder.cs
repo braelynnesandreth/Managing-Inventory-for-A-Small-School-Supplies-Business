@@ -30,12 +30,26 @@ namespace LibraryGroup8
 
         public void Approve()
         {
-            Status = RestockOrderStatus.Approved;
+            if (Status == RestockOrderStatus.Pending)
+            {
+                Status = RestockOrderStatus.Approved;
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot approve an order that is already approved or cancelled.");
+            }
         }
 
         public void Cancel()
         {
-            Status = RestockOrderStatus.Cancelled;
+            if (Status == RestockOrderStatus.Pending)
+            {
+                Status = RestockOrderStatus.Cancelled;
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot cancel an order that is already cancelled or approved.");
+            }
         }
         public enum RestockOrderStatus
         {
